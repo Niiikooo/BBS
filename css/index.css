@@ -16,6 +16,15 @@ a{
 	height: 1000px;
 	margin:0 auto;
 }
+#header .header_down #username{
+	width: 150;height:23px;margin-left: 12px;margin-bottom: 4px
+}
+#header .header_down .input_pass{
+	margin-right:21px;margin-left:5px
+}
+#password {
+	width: 150;height:23px;margin-right:5px
+}
 /*
 header
  */
@@ -92,6 +101,15 @@ header
 /*
 search
  */
+.search_sy{
+	width: 71px;
+}
+.search_js{
+	width: 128px;
+}
+.search_cx{
+	width: 99px;
+}
 .search_top{
 	height: 33px;
 	width: 960px;
@@ -100,6 +118,9 @@ search
 	height: 49.2px;
 	width: 960px;
 	
+}
+.search_ul{
+	float:left;padding-left: 7px
 }
 .search_top{
 	text-align:center;
@@ -332,4 +353,7 @@ float:left;
 }
 #footer p{
 	line-height: 20px;
+}
+.bt{
+	border-bottom: 1px solid #c2d5e3
 }
