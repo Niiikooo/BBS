@@ -1,10 +1,10 @@
 <?php
 
 		// 编译函数文件库
-
-	var_dump($_SERVER);
-	// echo a;
-	$aaa = 444;include '../../config/config.php';
+	var_dump(file_exists('index.html'));
+	var_dump(file_exists('www.rain.com/views/index.html'));
+	var_dump($_SERVER['DOCUMENT_ROOT']);
+	include '../../config/config.php';
 	/**
 	 * 编译函数库文件
 	 * @param  地址 $tplpath 视图层文件
@@ -13,8 +13,10 @@
 	 */
 	function display($tplname,$data=''){
 		// 合并文件具体路径
-		$tplFullpath = TPL_VIEW.'$tplname';
+		$tplFullpath = rtrim('C:/Users/Administrator/Desktop/BBS/views','/').'/'.$tplname;
+		echo $tplFullpath;
 		// 如果文件不错在跳出
+		var_dump(file_exists($tplFullpath));
 		if(!file_exists($tplFullpath)){
 			exit('文件出错');
 		}
@@ -25,7 +27,7 @@
 		// 存放到目标缓存路径
 		// 判断是否有权限和文件夹
 		// 拼接缓存文件路径
-		$cache = TPL_CACHE.date('Y/m/d',time()).'/';  //目录地址
+		$cache = rtrim(TPL_CACHE,'/').'/'.date('Y/m/d',time()).'/';  //目录地址
 		$cacheFilepath = $cache.str_replace('.','_',$tplname).'php'; //文件地址
 		echo $cacheFilepath;
 		if (!file_exists($cache)){
@@ -45,6 +47,7 @@
 
 		}
 		include $cacheFilepath;
+
 
 		
 
