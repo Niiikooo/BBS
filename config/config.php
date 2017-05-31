@@ -5,7 +5,7 @@
 	// 网站所需常量
 	define('WEBNAME', $_SERVER['DOCUMENT_ROOT']);
 	define('TPL_VIEW', rtrim(WEBNAME,'/').'/views');
-	define('TPL_CACHE', rtrim(WEBNAME,'/').'/cache');
+	define('TPL_CACHE', rtrim(WEBNAME,'/').'/caches');
 	define('FINDER', rtrim(WEBNAME,'/').'/helper/compiler/finder.php');
 
 	// 酱底层函数递归寻找文件放入config文件中，从而无需多次调用

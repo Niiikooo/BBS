@@ -21,13 +21,17 @@
 	 * @return [type]       返回用户密码
 	 */
 	function select_user($link,$name){
-		$sql = 'select * from '.$bbs_link['prefix'].'userdata where username = '.$name;
+		$name = parseStr($name);
+		$sql = 'select * from bbs_userdata where username = '.$name;
+		echo $sql;
 		$result = mysqli_query($link,$sql);
-		if(!$result && mysqli_num_rows($result)==null){
+		var_dump($result);
+		if(!$result){
+			echo '用户名输入错误，请重新输入！';
 			return $password = null;
 		}
 		$row = mysqli_fetch_assoc($result);
-		$password = $row['password'];
+		var_dump($password = $row['password']);
 		return $password;
 	}
 
@@ -47,8 +51,12 @@
 	 */
 	function select($link,$fields,$sheet,$where='',$groupBy='',$orderBy='',$limit=''){
 		$sql = 'select '.$fields.' from '.$sheet.' '.$where.' '.$groupBy.' '.$orderBy.' '.$limit;
-		echo $sql;
+		// echo $sql;
 		$result = mysqli_query($link,$sql);
+		if(!$result){
+			echo '数据库查询失败！';
+			return false;
+		}
 		if(!$result && mysqli_num_rows($result)){
 			return false;
 		}
@@ -60,18 +68,29 @@
 
 
 	// 插入函数，输入的数据是对应的数组
+	/**
+	 * 插入函数
+	 * @param  [type] $link  [description]
+	 * @param  [type] $sheet 表名
+	 * @param  [type] $data  将插入内容变为关联数组
+	 * @return [type]        bool
+	 */
 	function insert($link,$sheet,$data){
 		foreach ($data as $key => $value) {
 			$k[] = $key;
 			$v[] = $value; 
 		}
 		$fields = implode(',', $k);
-		$values = implode(',',$v);
-		$sql = "insert into ".$bbs_user['prefix'].'$sheet'."('$fields') values('$values'); ";
+		$values = parseStr($v);
+		$values = implode(',',$values);
+
+		$sql = "insert into ".$sheet.' ('.$fields.')'.'values('.$values.'); ';
+		echo $sql;
 		$result = mysqli_query($link,$sql);
 		if(!$result || !(mysqli_affected_rows($link))){
 			return false;
 		}
+		return true;
 
 	}
 
@@ -96,4 +115,14 @@
 
 		}
 
+	}
+
+
+	// 回调函数添加引号
+	function parseStr($str){
+		if (is_string($str)) {
+			return $str = '\''.$str.'\'';
+		}else if(is_array($str)){
+			return array_map('parseStr',$str);
+		}
 	}

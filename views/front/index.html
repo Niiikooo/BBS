@@ -4,9 +4,9 @@
 	<title>BBS</title>
 	<meta charset="utf-8" >
 	
-	<link rel="stylesheet" type="text/css" href="../public/css/base.css"> 
-	<link rel="stylesheet" type="text/css" href="../public/css/index.css"> 
-
+	<link rel="stylesheet" type="text/css" href="../../public/css/base.css"> 
+	<link rel="stylesheet" type="text/css" href="../../public/css/index.css"> 
+	
 </head>
 <body>         
 	<div id="container">
@@ -19,8 +19,9 @@
 			</div>
 			<div class="header_down">
 				<img src="img/logo.jpg" alt="logo">
-				<div class="header_right">
-				<form action="" method="get">
+				<!-- 未登录模块 -->
+				<div class="header_right visitor" style="">
+				<form action="{$login}" method="post">
 				<ul>
 					<label for="username"><li>用户名</li></label>
 					<li><input type="text" name="username" style="" id="username"></li>
@@ -28,7 +29,7 @@
 					<div class="clr"></div>
 					<li style="" class="input_pass"><label for="password" >密码</label></li>
 					<li><input type="password" name="password" id="password" style=""></li>
-					<li><button type="submit">登录</button></li>
+					<li><input type="submit" value="登录"></li>
 				</ul>
 				</form>
 				<div class="header_right_r">
@@ -36,6 +37,32 @@
 					<div><a href="#">立即注册</a></div>
 				</div>
 				</div>
+				<!-- 结束 -->
+		
+				<!-- 已登录模块开始 -->
+				<div class="header_right_admin">
+				<img src="../../public/img/logo.jpg" style="float: right">
+				<ul class="admin_l" style="float:right">
+					<li style="width: 200px;text-align:right">{$_SESSION['username']}<span class="pipe">|</span></li>
+					<li><button>签到</button><span class="pipe">|</span></li>
+					<li>我的<span class="pipe">|</span></li>
+					<li>设置<span class="pipe">|</span></li>
+					<li>消息<span class="pipe">|</span></li>
+					<li>提醒<span class="pipe">|</span></li>
+					<li>退出</li>
+
+					<div class="clr"></div>
+				<ul class="admin_r">
+					<li>积分：<span class="pipe">|</span></li>
+					<li>用户组：</li>
+					</ul>
+				</ul>
+				<div class="" style="float: right;">
+					
+				</div>
+				</div>
+				<!-- 已登录模块结束 -->
+				
 				<div class="clr"></div>
 			</div>
 

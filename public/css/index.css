@@ -89,14 +89,34 @@ header
 	float:right;
 	border-left:1px solid #E5EDF2;
 	padding-left: 9px;
-	width: 57px;
-	height: 55px;
+	height: 50px;
+	width: 58px;
+}
+.header_right_admin{
+	float: right;
+	width: 640px;
+	height: 100px;
+}
+.header_right_admin li{
+	float: left;
+	line-height: 20px;
+	padding:0px 2px;
+	display: inline;
+}
+.admin_r{
+	float:right;
+}
+button{
+	/*display: inline;*/
 }
 .header_right_r div{
 	float:right;
 	width: 58px;
 	line-height: 26px;
 
+}
+.visitor{
+	/*display: none;*/
 }
 /*
 search
