@@ -1,0 +1,101 @@
+/*
+ css for list
+ */
+
+.list_nav{
+	width: 132px;
+	float: left;
+}
+.list{
+	
+	margin:0 auto;
+	width: 961px;
+	margin-top: 6px;
+}
+.list_nav{
+	border:1px solid #eeeeee;
+	padding:3px;
+	text-align: center;
+}
+.list_n_m li:first-child{
+	font-size: 15px;
+}
+.list_n_m li{
+	font-size: 13px
+}
+.list_r_h{
+	width: 813px;
+	height: 67px;
+	border: 1px solid #EEEEEE;
+	padding-top: 5px;
+	padding-left: 13px;
+}
+.list_n_h{
+	margin-top: 2px;
+}
+.list_r_h{
+	float:left;
+	/*margin-top:41px;*/
+	margin-left:;
+}
+.list_r{
+	width: 813px;
+	float: right;
+}
+.list_r button:first-child{
+	float:left;
+}.list_r button{
+	float:right;
+	margin:12px 0px;
+}
+.list_r_b{
+	width: 813px;
+	border: 1px solid #eeeeee;
+}
+.list_r_b .pipe{
+	line-height: 47px;
+}
+.list-group-item {
+	border-left: none;
+	border-right: none;
+
+}
+.list_r_b_nav{
+	height: 50px;
+	margin-bottom: 0px;
+	border: none;
+	border-radius: 0px;
+}
+.list_r_b .list-group{
+	margin-bottom:0px;
+}
+.list-group-item{
+	
+	border:none;
+	/*border-bottom: 2px solid red;*/
+}
+.list-group :first-child{ 
+	border-top:none;
+	/*border-bottom:none;*/
+}
+.list-group :last-child{
+	border-bottom:none;
+}
+.list_r_b_r{
+	padding-right:20px;
+}
+.list_table .l_t{
+	height: 38px;
+	text-align: center;
+	padding:0;
+	margin:0;
+	line-height: 47px;
+}
+.list_table .l_t:first-child{
+	padding-left: 10px;
+	text-align:left;
+	height: 38px;
+}
+.list_table{
+	text-align: center;
+}

@@ -1,3 +1,4 @@
+
 <?php
 
 		// 编译函数文件库
@@ -14,7 +15,7 @@
 	 */
 	function display($tplname,$data=''){
 		// 合并文件具体路径
-		$tplFullpath = rtrim('C:/Users/Administrator/Desktop/BBS/views/front','/').'/'.$tplname;
+		$tplFullpath = finder($tplname);
 		// echo $tplFullpath;
 		// 如果文件不错在跳出
 		// var_dump(file_exists($tplFullpath));
@@ -86,7 +87,8 @@
 		'{$%% = $%%}'		=> '<?php $\1 = $\2;?>',
 		'{default}'			=> '<?php default:?>',
 		'{include %%}'		=> '<?php include "\1";?>',
-	];
+		'{([A-Z]+\.)+%%}'   => '<?php echo \1."\2" ;?>'
+ 	];
 
 	foreach ($keys as $key => $val) {
 		$pattern = '#'.str_replace('%%' , '(.+)' , preg_quote($key , '#')).'#imsU';

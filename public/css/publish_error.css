@@ -1,0 +1,38 @@
+/*css for publish_error*/
+
+960747
+
+.publish_error {
+	width: 960px;
+	height: 747px;
+	margin:0 auto;
+}
+.publish_error_main{
+	width: 626px;
+	height: 110px;
+	margin:0 auto;
+	border: 3px solid #f2f2f2;
+	margin-top: 60px;
+}
+.publish_error_main img{
+	float: left;
+	width: 35px;
+	height: 35px;
+	/*margin-top: 30px;*/
+	margin:30 17 0 30;
+}
+.p_e_r{
+	float:left;
+	line-height: 15px;
+	height: 45px;
+	margin-top: 15px;
+}
+.p_e_r span{
+	color: #FF0000;
+}
+.p_e_r_p{
+	color: #3266b2;
+}
+.p_e_r .logout{
+	color: #afd315;
+}

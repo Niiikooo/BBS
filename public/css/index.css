@@ -28,6 +28,9 @@ a{
 /*
 header
  */
+#autoLogin{
+	margin-left: 5px;
+}
 .header_top ul{
 	margin-left: 233px;
 	line-height: 24px;
@@ -74,23 +77,23 @@ header
 .header_right {
 	float:right;
 		margin-top: 24px;
-		/*width: 400px;*/
+	width:360px;
 }
 .header_right li{
 	float:left;
 }
 .header_right form{
-	width: 300px;
+	width: 285px;
 	height: 65px;
 	float:left;
 
 }
 .header_right_r{
-	float:right;
+	float:left;
 	border-left:1px solid #E5EDF2;
-	padding-left: 9px;
 	height: 50px;
 	width: 58px;
+	padding-left:10;
 }
 .header_right_admin{
 	float: right;
@@ -110,7 +113,7 @@ button{
 	/*display: inline;*/
 }
 .header_right_r div{
-	float:right;
+	float:left;
 	width: 58px;
 	line-height: 26px;
 
@@ -177,7 +180,8 @@ search
 	left:-21px;
 	overflow-left:visible;
 	position: relative;
-	border: none
+	border: none;
+	top: 10px;
 }
 .search_down form{
 	background:url(../img/search.png);
@@ -214,15 +218,22 @@ search
 	width: 960px;
 	height: 58px;
 	/*padding-top: 11px;*/
+	margin-bottom:0px;
+	background-color: white;
 }
+.breadcrumb{
+
+}
+
 .home{
 	background:url(../img/search.png) no-repeat -8px  -119px;
 	width: 16px;
 	height: 31px;
+	margin-top:6px;
 }
 .path .path_a li{
 	height: 31px;
-	width: 30px;
+	width: 50px;;
 	text-align: center;
 	line-height: 31px;
 }
@@ -267,7 +278,7 @@ search
 	margin:0 auto;
 	width: 960px;
 }
-.nav	{
+.navnav	{
 	height: 31px;
 	background:url(../img/titlebg.png) repeat-x 0 0;
 	/*text-align: center;*/

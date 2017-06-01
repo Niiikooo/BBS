@@ -14,4 +14,6 @@
 	}else{
 		echo '登陆失败';
 	}
+
+	var_dump($_POST);
 ?>

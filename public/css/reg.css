@@ -1,0 +1,57 @@
+/*
+css for regisiter
+ */
+body{
+	width: 1440px;
+	clear:both;
+	margin:0 auto;
+}
+.reg_main{
+	width: 961px;
+	height: 377px;
+	/*background-color: red;*/
+	margin: 0 auto;
+
+}
+.r_m_h{
+	border: 1px solid #cdcdcd;
+	height: 35px;
+	line-height: 3 5px;
+	padding-left: 10px;
+	font-weight: bolder;
+	background:#00a0d8;
+
+}
+.r_m_b{
+	border: 1px solid #cdcdcd;
+	height: 400px;
+}
+.r_m_b_m{
+	width: 762px;
+	height: 400px;
+	/*background-color: black;*/
+	margin:0 auto;
+	padding-top: 20px;
+}
+.sig{
+	/*background: url(../img/sig.png) repeat-x;*/
+	height: 10px;
+	margin-top: 10px;
+	width: 300px;;
+}
+.tr_1{
+	text-align:right;
+}
+.r_m_b_m tr{
+	margin:10px 0px;
+}
+.r_m_b_m table{
+	margin-left:-50px;
+}
+.r_m_b_p{
+	font-size: 25px;
+	margin:0 auto;
+	text-align: center;
+	margin-bottom: 20px;
+	/*padding-left: 100px;	*/
+}

@@ -4,8 +4,10 @@
 	<title>BBS</title>
 	<meta charset="utf-8" >
 	
+	<link rel="stylesheet" type="text/css" href="../../public/css/bootstrap.min.css"> 
 	<link rel="stylesheet" type="text/css" href="../../public/css/base.css"> 
-	<link rel="stylesheet" type="text/css" href="../../public/css/index.css"> 
+	<link rel="stylesheet" type="text/css" href="../../public/css/index.css">
+	
 	
 </head>
 <body>         
@@ -23,13 +25,13 @@
 				<div class="header_right visitor" style="">
 				<form action="<?=$login;?>" method="post">
 				<ul>
-					<label for="username"><li>用户名</li></label>
-					<li><input type="text" name="username" style="" id="username"></li>
+					<li><label for="username">用户名</label></li>
+					<li><input type="text" name="username" style="" id="username" class="form-control"></li>
 					<li><input type="radio" id="autoLogin"  class="check"><label for="autoLogin">自动登录</label></li>
 					<div class="clr"></div>
 					<li style="" class="input_pass"><label for="password" >密码</label></li>
-					<li><input type="password" name="password" id="password" style=""></li>
-					<li><input type="submit" value="登录"></li>
+					<li><input type="password" name="password" id="password" style="" class="form-control"></li>
+					<li><button type="submit" class="btn btn-xs" style="width:60px">登录</button></li>
 				</ul>
 				</form>
 				<div class="header_right_r">
@@ -95,14 +97,16 @@
 						</ul>
 						<div class="clr"></div>
 					</form>
-					<div class="path">
-						<div class="home"></div>
-						<ul class="path_a">
-							<li id="icon"></li>
-							<li><a href="#">论坛</a></li>
-						</ul>
-						<div class="clr"></div>
-						<ul class="chart">
+					<div class="path ">
+						<ol class="breadcrumb" >
+						<li class="home"></li>
+						<!-- <ul class="path_a"> -->
+						<li><a href="#">论坛</a></li>
+							
+						<!-- </ul> -->
+						</ol>
+<!-- 						<div class="clr"></div>
+ -->						<ul class="chart">
 							<li></li>
 							<li>帖子<span class="pipe">|</span></li>
 							<li>会员<span class="pipe">|</span></li>
@@ -117,7 +121,7 @@
 		<div id="main">
 			<!-- 主体分块 大板块开始 -->
 			<div class="main-mod">
-				<div class="nav"><span><a href="#">PHP技术交流</a></span></div>
+				<div class="navnav"><span><a href="#">PHP技术交流</a></span></div>
 				<div class="clr"></div>
 				<!-- 一个小版块 -->
 				<div class="main-mod-main">
@@ -183,7 +187,7 @@
 			<!-- end of main-mod 大板块 -->
 			<!-- 第二个板块开始 -->
 				<div class="main-mod">
-				<div class="nav"><span>PHP技术交流</span></div>
+				<div class="navnav"><span>PHP技术交流</span></div>
 				<!-- 一个小版块 -->
 				<div class="main-mod-main">
 					<div class="mod-left">
