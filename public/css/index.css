@@ -216,12 +216,13 @@ search
 /*path*/
 .path{
 	width: 960px;
-	height: 58px;
+	height: 48px;
 	/*padding-top: 11px;*/
 	margin-bottom:0px;
 	background-color: white;
 }
 .breadcrumb{
+	background:white;
 
 }
 
@@ -271,7 +272,6 @@ search
 /*main-nav*/
 .main-mod{
 	width: 960px;
-	height: 265px;
 	/*background-color: red;*/
 }
 #main{
@@ -298,7 +298,7 @@ search
 	float:left;
 }
 .main-mod-main {
-	width: 958px;
+	width: 960px;
 	height: 58px;
 	/*background: #ccc;*/
 	border-left:1px solid #c2d5e3;

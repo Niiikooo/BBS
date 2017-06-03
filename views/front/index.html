@@ -73,18 +73,18 @@
 		<div class="clr"></div>
 		<div id="search">
 			<div class="search_top">
-				<ul>
-					<li style="" class="search_sy">首页</li>
+				<ul class="">
+					<a href="#"><li style="" class="search_sy">首页</li></a>
 					<li class="dn"></li>
-					<li style="" class="search_js">PHP技术交流</li>
+					<a href="#"><li style="" class="search_js">PHP技术交流</li></a>
 					<li class="dn"></li>
-					<li style="" class="search_cx">程序人生</li>
+					<a href="#"><li style="" class="search_cx">程序人生</li></a>
 				</ul>
 			</div>
 			<div class="search_down">
 				
 					<form action="serach.php" method="get">
-						<div class="glass"></div>
+						<a href="#"><div class="glass"></div></a>
 						<div class="glass_search"><input type="text" name="search" class="search_input"></div>
 						<div class="sh">
 							<button type="submit">搜索</button>
@@ -102,6 +102,7 @@
 						<li class="home"></li>
 						<!-- <ul class="path_a"> -->
 						<li><a href="#">论坛</a></li>
+
 							
 						<!-- </ul> -->
 						</ol>
@@ -120,14 +121,32 @@
 		<div class="clr"></div>
 		<div id="main">
 			<!-- 主体分块 大板块开始 -->
-			<div class="main-mod">
-				<div class="navnav"><span><a href="#">PHP技术交流</a></span></div>
+			<!-- 添加循环语句 -->
+			<div class="main">
+			<?php var_dump($data);?>
+			
+			{foreach $data as $key => $value}
+				{if ($big = $_GET['bigid'])>0}
+				<?php 
+					if($key!=$bigid[$big]['cid']){
+						next($data);
+
+					}
+				?>
+
+				
+
+
+				{else}
+				<div class="main-mod">
+				<div class="navnav"><span><a href="#">{$key}</a></span></div>
 				<div class="clr"></div>
 				<!-- 一个小版块 -->
+				{foreach $value as $k => $v}
 				<div class="main-mod-main">
 					<div class="mod-left">
 						<a href="#"><img src="img/forum.gif" alt=""></a>
-						<p><a href="#">内核源码</a><br/>版主：test001</p>
+						<p><a href="#">{$v['classname']}</a><br/>版主：{$v['compere']}</p>
 
 					</div>
 
@@ -141,115 +160,24 @@
 				</div>
 				
 				<div class="clr"></div>
+				{/foreach}
 				<!-- 小版块完 -->
-					<div class="main-mod-main">
-					<div class="mod-left">
-						<a href="#"><img src="img/forum.gif" alt=""></a>
-						<p><a href="#">内核源码</a><br/>版主：test001</p>
-					</div>
-					<div class="mod-right">
-						<div class="r1"><p>10/9</p></div>
-						<div class="r2"><p><a href="#">本论坛超管的账号、密码都为admin</a><br />2015-10-08 10:49:55 admin</p></div>
-						<div class="clr"></div>
-					</div>
-					<div class="clr"></div>
-					<div class="sigline"></div>
-				</div>
 				
-					<div class="main-mod-main">
-					<div class="mod-left">
-						<a href="#"><img src="img/forum.gif" alt=""></a>
-						<p><a href="#">内核源码</a><br/>版主：test001</p>
-					</div>
-					<div class="mod-right">
-						<div class="r1"><p>10/9</p></div>
-						<div class="r2"><p><a href="#">本论坛超管的账号、密码都为admin</a><br />2015-10-08 10:49:55 admin</p></div>
-						<div class="clr"></div>
-					</div>
-					<div class="clr"></div>
-					<div class="sigline"></div>
-				</div>
-					<div class="main-mod-main">
-					<div class="mod-left">
-						<a href="#"><img src="img/forum.gif" alt=""></a>
-						<p><a href="#">内核源码</a><br/>版主：test001</p>
-					</div>
-					<div class="mod-right">
-						<div class="r1"><p>10/9</p></div>
-						<div class="r2"><p><a href="#">本论坛超管的账号、密码都为admin</a><br />2015-10-08 10:49:55 admin</p></div>
-						<div class="clr"></div>
-					</div>
-					<div class="clr"></div>
-				</div>
+				
+				
 
+				</div>
+				{/if}
+			{/foreach}
 			</div>
-
 			<!-- end of main-mod 大板块 -->
 			<!-- 第二个板块开始 -->
-				<div class="main-mod">
-				<div class="navnav"><span>PHP技术交流</span></div>
+			
 				<!-- 一个小版块 -->
-				<div class="main-mod-main">
-					<div class="mod-left">
-						<a href="#"><img src="img/forum.gif" alt=""></a>
-						<p><a href="#">内核源码</a><br/>版主：test001</p>
-					</div>
-					<div class="mod-right">
-						<div class="r1"><p>10/9</p></div>
-						<div class="r2"><p><a href="#">本论坛超管的账号、密码都为admin</a><br />2015-10-08 10:49:55 admin</p></div>
-						<div class="clr"></div>
-					</div>
-					<div class="clr"></div>
-					<div class="sigline"></div>
-				</div>
 				
-				<div class="clr"></div>
-				<!-- 小版块完 -->
-					<div class="main-mod-main">
-					<div class="mod-left">
-						<a href="#"><img src="img/forum.gif" alt=""></a>
-						<p><a href="#">内核源码</a><br/>版主：test001</p>
-					</div>
-					<div class="mod-right">
-						<div class="r1"><p>10/9</p></div>
-						<div class="r2"><p><a href="#">本论坛超管的账号、密码都为admin</a><br />2015-10-08 10:49:55 admin</p></div>
-						
-					</div><div class="clr"></div>
-					<div class="sigline"></div>
-					<div class="clr"></div>
-				</div>
-				
-					<div class="main-mod-main">
-					<div class="mod-left">
-						<a href="#"><img src="img/forum.gif" alt=""></a>
-						<p><a href="#">内核源码</a><br/>版主：test001</p>
-					</div>
-					<div class="mod-right">
-						<div class="r1"><p>10/9</p></div>
-						<div class="r2"><p><a href="#">本论坛超管的账号、密码都为admin</a><br />2015-10-08 10:49:55 admin</p></div>
-						<div class="clr"></div>
-					</div>
-					
-					<div class="clr"></div>
-					<div class="sigline"></div>
-				</div>
-					<div class="main-mod-main bt" style=";">
-					<div class="mod-left">
-						<a href="#"><img src="img/forum.gif" alt=""></a>
-						<p><a href="#">内核源码</a><br/>版主：test001</p>
-					</div>
-					<div class="mod-right">
-						<div class="r1"><p>10/9</p></div>
-						<div class="r2"><p><a href="#">本论坛超管的账号、密码都为admin</a><br />2015-10-08 10:49:55 admin</p></div>
-						<div class="clr"></div>
-					</div>
-					<div class="clr"></div>
-				</div>
-
-			</div>
 			<!-- 第二个板块结束 -->
 
-			<!-- 第三个版块 -->
+			<!-- 底部版块 -->
 			<div class="main_bottom">
 				<div class="mod-left bottom_left">
 					<a href="#"><img src="img/logo_88_31.gif" alt=""></a>

@@ -16,12 +16,18 @@
 	}
 	// 检验文件地址
 	$login = 'helper/compiler/login_verify.php';
-  	display('index.html',$data = compact($_SESSION['username'],'login'));
+	$data = category($link);
+	$bigid = select($link,'cid,classname','bbs_category','where parentid=0');
+	var_dump($bigid);
+  	display('index.html',$data = compact($_SESSION['username'],'login','data','bigid'));
+
+	// 将版块数据提起出来，从表bbs_category
+
+	
+	
 
 	
 
-
-?>
 
 
 

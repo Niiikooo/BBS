@@ -51,7 +51,7 @@
 	 */
 	function select($link,$fields,$sheet,$where='',$groupBy='',$orderBy='',$limit=''){
 		$sql = 'select '.$fields.' from '.$sheet.' '.$where.' '.$groupBy.' '.$orderBy.' '.$limit;
-		// echo $sql;
+		echo $sql;
 		$result = mysqli_query($link,$sql);
 		if(!$result){
 			echo '数据库查询失败！';
@@ -64,6 +64,7 @@
 			$data[]=$rows;
 		}
 		return $data;
+		mysqli_close($link);
 	}
 
 
@@ -125,4 +126,31 @@
 		}else if(is_array($str)){
 			return array_map('parseStr',$str);
 		}
+	}
+
+	/**
+	 * 将板块数据提取出来组合成一个三维数组。第一层是大板块，第二层是小版块，是一个二维索引数组，需要使用遍历经数据提取出来
+	 * @return [type] [description]
+	 */
+	function category($link){
+		// 将数据提取出来，排序并使用limit提取，个数需要先提取出来
+		// parentid 的最大值 max(parentid) 然后循环提取从0开始
+		$max = select($link,'max(parentid) as max','bbs_category');
+
+		list($a1,$a2)=each($max);
+		list($a3,$max)=each($a2);
+		// 子版块提取出来
+		for ($i=1;$i<=$max;$i++){
+			$data[] = select($link,'*','bbs_category',"where parentid=$i");
+			
+		}
+		// 提取大板块
+		$parent = select($link,'classname','bbs_category','where parentid=0');
+		foreach ($parent as $key => $value) {
+			$parentId[] = $value['classname'];
+		}
+		// 拼接
+		$fin = array_combine($parentId, $data);
+		return $fin;
+
 	}
