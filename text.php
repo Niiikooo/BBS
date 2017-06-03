@@ -3,3 +3,5 @@
 
 	$arr = category($link);
 	var_dump($arr);
+
+	

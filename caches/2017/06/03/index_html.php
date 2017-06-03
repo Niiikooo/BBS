@@ -23,7 +23,7 @@
 				<img src="img/logo.jpg" alt="logo">
 				<!-- 未登录模块 -->
 				<div class="header_right visitor" style="">
-				<form action="{$login}" method="post">
+				<form action="<?=$login;?>" method="post">
 				<ul>
 					<li><label for="username">用户名</label></li>
 					<li><input type="text" name="username" style="" id="username" class="form-control"></li>
@@ -45,7 +45,7 @@
 				<div class="header_right_admin">
 				<img src="../../public/img/logo.jpg" style="float: right">
 				<ul class="admin_l" style="float:right">
-					<li style="width: 200px;text-align:right">{$_SESSION['username']}<span class="pipe">|</span></li>
+					<li style="width: 200px;text-align:right"><?=$_SESSION['username'];?><span class="pipe">|</span></li>
 					<li><button>签到</button><span class="pipe">|</span></li>
 					<li>我的<span class="pipe">|</span></li>
 					<li>设置<span class="pipe">|</span></li>
@@ -125,8 +125,8 @@
 			<div class="main">
 			<!-- <?php var_dump($data);?> -->
 			<?php var_dump(isset($_GET['bigid']));?>
-			{foreach $data as $key => $value}
-				{if isset($_GET['bigid'])}
+			<?php foreach($data as $key => $value):?>
+				<?php if(isset($_GET['bigid'])):?>
 				<?php 
 					$id = $_GET['bigid'];
 					if($key!=$bigid[1]['cid']){
@@ -137,16 +137,16 @@
 				
 
 
-				{else}
+				<?php else: ?>
 				<div class="main-mod">
-				<div class="navnav"><span><a href="#">{$key}</a></span></div>
+				<div class="navnav"><span><a href="#"><?=$key;?></a></span></div>
 				<div class="clr"></div>
 				<!-- 一个小版块 -->
-				{foreach $value as $k => $v}
+				<?php foreach($value as $k => $v):?>
 				<div class="main-mod-main">
 					<div class="mod-left">
 						<a href="#"><img src="img/forum.gif" alt=""></a>
-						<p><a href="#">{$v['classname']}</a><br/>版主：{$v['compere']}</p>
+						<p><a href="#"><?=$v['classname'];?></a><br/>版主：<?=$v['compere'];?></p>
 
 					</div>
 
@@ -160,15 +160,15 @@
 				</div>
 				
 				<div class="clr"></div>
-				{/foreach}
+				<?php endforeach;?>
 				<!-- 小版块完 -->
 				
 				
 				
 
 				</div>
-				{/if}
-			{/foreach}
+				<?php endif;?>
+			<?php endforeach;?>
 			</div>
 			<!-- end of main-mod 大板块 -->
 			<!-- 第二个板块开始 -->

@@ -135,20 +135,35 @@
 	function category($link){
 		// 将数据提取出来，排序并使用limit提取，个数需要先提取出来
 		// parentid 的最大值 max(parentid) 然后循环提取从0开始
-		$max = select($link,'max(parentid) as max','bbs_category');
-
-		list($a1,$a2)=each($max);
-		list($a3,$max)=each($a2);
-		// 子版块提取出来
-		for ($i=1;$i<=$max;$i++){
-			$data[] = select($link,'*','bbs_category',"where parentid=$i");
-			
+		// $count = select($link,'count(max)','(select parentid as max from bbs_category group by parentid) as temp');
+		// var_dump($count);
+		// list($a1,$a2)=each($count);
+		// list($a3,$count)=each($a2);
+		// var_dump($count);die;
+		$bigid = select($link,'cid,classname','bbs_category','where parentid=0');
+		var_dump($bigid);
+		foreach ($bigid as $key => $value) {
+			$pid[$value['cid']] = $value['classname'];
 		}
+		var_dump($pid);
 		// 提取大板块
 		$parent = select($link,'classname','bbs_category','where parentid=0');
-		foreach ($parent as $key => $value) {
+		var_dump($parent);
+		
+		// 子版块提取出来
+		foreach ($pid as $key => $value) {
+			foreach ($parent as $key => $value) {
 			$parentId[] = $value['classname'];
-		}
+		
+			$data[]=select($link,'*','bbs_category',"where parentid=$key");
+		}}
+		var_dump($data);die;
+		
+		// for ($i=1;$i<=$max;$i++){
+		// 	$data[] = select($link,'*','bbs_category',"where parentid=$i");
+			
+		// }
+		
 		// 拼接
 		$fin = array_combine($parentId, $data);
 		return $fin;
