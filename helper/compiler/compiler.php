@@ -87,7 +87,7 @@
 		'{$%% = $%%}'		=> '<?php $\1 = $\2;?>',
 		'{default}'			=> '<?php default:?>',
 		'{include %%}'		=> '<?php include "\1";?>',
-		'{([A-Z]+\.)+%%}'   => '<?php echo \1."\2" ;?>'
+		'{echo %%}'       => '<?php echo \1 ;?>'
  	];
 
 	foreach ($keys as $key => $val) {

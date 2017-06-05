@@ -20,7 +20,7 @@
 				</ul>
 			</div>
 			<div class="header_down">
-				<img src="img/logo.jpg" alt="logo">
+				<img src="/public/img/logo.jpg" alt="logo">
 				<!-- 未登录模块 -->
 				<div class="header_right visitor" style="">
 				<form action="{$login}" method="post">
@@ -67,18 +67,19 @@
 				
 				<div class="clr"></div>
 			</div>
-
-
 		</div>
 		<div class="clr"></div>
 		<div id="search">
 			<div class="search_top">
 				<ul class="">
-					<a href="#"><li style="" class="search_sy">首页</li></a>
+				<a href="?cid=0"><li class="search_sy">首页</li></a>
 					<li class="dn"></li>
-					<a href="#"><li style="" class="search_js">PHP技术交流</li></a>
+				{foreach $pid as $key => $value}
+					
+					<a href="?cid={$key}"><li class="search_js">{$value}</li></a>
 					<li class="dn"></li>
-					<a href="#"><li style="" class="search_cx">程序人生</li></a>
+					<!-- <a href="#"><li class="search_cx">程序人生</li></a> -->
+				{/foreach}
 				</ul>
 			</div>
 			<div class="search_down">
@@ -124,21 +125,9 @@
 			<!-- 添加循环语句 -->
 			<div class="main">
 			<!-- <?php var_dump($data);?> -->
-			<?php var_dump(isset($_GET['bigid']));?>
 			{foreach $data as $key => $value}
-				{if isset($_GET['bigid'])}
-				<?php 
-					$id = $_GET['bigid'];
-					if($key!=$bigid[1]['cid']){
-					
-				}	
-				?>
-
-				
-
-
-				{else}
-				<div class="main-mod">
+	
+			<div class="main-mod">
 				<div class="navnav"><span><a href="#">{$key}</a></span></div>
 				<div class="clr"></div>
 				<!-- 一个小版块 -->
@@ -166,8 +155,7 @@
 				
 				
 
-				</div>
-				{/if}
+			</div>
 			{/foreach}
 			</div>
 			<!-- end of main-mod 大板块 -->

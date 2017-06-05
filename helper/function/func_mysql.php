@@ -51,7 +51,7 @@
 	 */
 	function select($link,$fields,$sheet,$where='',$groupBy='',$orderBy='',$limit=''){
 		$sql = 'select '.$fields.' from '.$sheet.' '.$where.' '.$groupBy.' '.$orderBy.' '.$limit;
-		echo $sql;
+		// echo $sql;
 		$result = mysqli_query($link,$sql);
 		if(!$result){
 			echo '数据库查询失败！';
@@ -132,40 +132,44 @@
 	 * 将板块数据提取出来组合成一个三维数组。第一层是大板块，第二层是小版块，是一个二维索引数组，需要使用遍历经数据提取出来
 	 * @return [type] [description]
 	 */
-	function category($link){
-		// 将数据提取出来，排序并使用limit提取，个数需要先提取出来
-		// parentid 的最大值 max(parentid) 然后循环提取从0开始
-		// $count = select($link,'count(max)','(select parentid as max from bbs_category group by parentid) as temp');
-		// var_dump($count);
-		// list($a1,$a2)=each($count);
-		// list($a3,$count)=each($a2);
-		// var_dump($count);die;
-		$bigid = select($link,'cid,classname','bbs_category','where parentid=0');
-		var_dump($bigid);
-		foreach ($bigid as $key => $value) {
-			$pid[$value['cid']] = $value['classname'];
+	/**
+	 * 提取所有板块数据
+	 * @param  [type]  $link [description]
+	 * @param  integer $cid  板块ID
+	 * @return 返回一个三维数组        [description]
+	 */
+	function category($link,$cid = 0){
+		// 判断大板块id是否存在，不存在显示所有信息，存在则显示特定板块信息
+		if ($cid > 0) {
+			$where = "where cid = $cid";
+		}else{
+			$where = 'where parentid = 0';
 		}
-		var_dump($pid);
-		// 提取大板块
-		$parent = select($link,'classname','bbs_category','where parentid=0');
-		var_dump($parent);
+		// $bigid = select($link,'cid,classname','bbs_category',$where);
+		// // 将板块的cid和classname拼接为一个一维数组
+		// foreach ($bigid as $key => $value) {
+		// 	$pid[$value['cid']] = $value['classname'];
+		// }
+		$pid = pid($link);
+
 		
 		// 子版块提取出来
 		foreach ($pid as $key => $value) {
-			foreach ($parent as $key => $value) {
-			$parentId[] = $value['classname'];
-		
+			$parentId[] = $value;
 			$data[]=select($link,'*','bbs_category',"where parentid=$key");
-		}}
-		var_dump($data);die;
-		
-		// for ($i=1;$i<=$max;$i++){
-		// 	$data[] = select($link,'*','bbs_category',"where parentid=$i");
-			
-		// }
-		
+		}
 		// 拼接
 		$fin = array_combine($parentId, $data);
 		return $fin;
 
+	}
+
+
+	function pid($link){
+		$bigid = select($link,'cid,classname','bbs_category','where parentid = 0');
+		// 将板块的cid和classname拼接为一个一维数组
+		foreach ($bigid as $key => $value) {
+			$pid[$value['cid']] = $value['classname'];
+		}
+		return $pid;
 	}

@@ -20,7 +20,7 @@
 				</ul>
 			</div>
 			<div class="header_down">
-				<img src="img/logo.jpg" alt="logo">
+				<img src="/public/img/logo.jpg" alt="logo">
 				<!-- 未登录模块 -->
 				<div class="header_right visitor" style="">
 				<form action="<?=$login;?>" method="post">
@@ -67,18 +67,19 @@
 				
 				<div class="clr"></div>
 			</div>
-
-
 		</div>
 		<div class="clr"></div>
 		<div id="search">
 			<div class="search_top">
 				<ul class="">
-					<a href="#"><li style="" class="search_sy">首页</li></a>
+				<a href="?cid=0"><li class="search_sy">首页</li></a>
 					<li class="dn"></li>
-					<a href="#"><li style="" class="search_js">PHP技术交流</li></a>
+				<?php foreach($pid as $key => $value):?>
+					
+					<a href="?cid=<?=$key;?>"><li class="search_js"><?=$value;?></li></a>
 					<li class="dn"></li>
-					<a href="#"><li style="" class="search_cx">程序人生</li></a>
+					<!-- <a href="#"><li class="search_cx">程序人生</li></a> -->
+				<?php endforeach;?>
 				</ul>
 			</div>
 			<div class="search_down">
@@ -123,22 +124,10 @@
 			<!-- 主体分块 大板块开始 -->
 			<!-- 添加循环语句 -->
 			<div class="main">
-			<?php var_dump($data);?>
-			
+			<!-- <?php var_dump($data);?> -->
 			<?php foreach($data as $key => $value):?>
-				<?php if(($big = $_GET['bigid'])>0):?>
-				<?php 
-					if($key!=$bigid[$big]['cid']){
-						next($data);
-
-					}
-				?>
-
-				
-
-
-				<?php else: ?>
-				<div class="main-mod">
+	
+			<div class="main-mod">
 				<div class="navnav"><span><a href="#"><?=$key;?></a></span></div>
 				<div class="clr"></div>
 				<!-- 一个小版块 -->
@@ -166,8 +155,7 @@
 				
 				
 
-				</div>
-				<?php endif;?>
+			</div>
 			<?php endforeach;?>
 			</div>
 			<!-- end of main-mod 大板块 -->

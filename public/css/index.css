@@ -128,7 +128,8 @@ search
 	width: 71px;
 }
 .search_js{
-	width: 128px;
+	/*width: 128px;*/
+	padding: 0px 23px;
 }
 .search_cx{
 	width: 99px;
