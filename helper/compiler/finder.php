@@ -1,11 +1,11 @@
 <?php
-
 // 递归寻找文件
 	function find($path,$document_root=WEBNAME,$sum=0,$sum2=0){
 
 
 
 		// 判断文件是否在根目录下
+		// var_dump($document_root);
 		$newPath = rtrim($document_root,'/').'/'.$path;
 		if(file_exists($newPath)){
 			// var_dump($newPath);
@@ -39,9 +39,9 @@
 	function finder($path){
 		find($path);
 		global $a;
-		
-		if($a==''){
+		if($a==null){
 			exit('引入的文件不存在');
 		}
 		return $a;
 	}
+

@@ -15,7 +15,8 @@
 	 */
 	function display($tplname,$data=''){
 		// 合并文件具体路径
-		$tplFullpath = finder($tplname);
+		// echo $tplFullpath = finder($tplname);
+		$tplFullpath = rtrim(TPL_VIEW,'/').'/front/'.$tplname;
 		// echo $tplFullpath;
 		// 如果文件不错在跳出
 		// var_dump(file_exists($tplFullpath));
@@ -86,8 +87,9 @@
 		'{/section}'		=> '?>',
 		'{$%% = $%%}'		=> '<?php $\1 = $\2;?>',
 		'{default}'			=> '<?php default:?>',
-		'{include %%}'		=> '<?php include "\1";?>',
-		'{echo %%}'       => '<?php echo \1 ;?>'
+		'{include %%}'		=> '<?php include \1;?>',
+		'{echo %%}'         => '<?php echo \1 ;?>',
+		'{P %%}'           => '<?php \1 ;?>'
  	];
 
 	foreach ($keys as $key => $val) {
@@ -96,13 +98,13 @@
 		$replace = $val;
 		
 		
-		if (stripos($pattern , 'include')) {
-			//处理 包含的问题
+		// if (stripos($pattern , 'include')) {
+		// 	//处理 包含的问题
 			
-			$file = preg_replace_callback($pattern , 'parseInclude' , $file);
-		} else {
+		// 	$file = preg_replace_callback($pattern , 'parseInclude' , $file);
+		// } else {
 			$file = preg_replace($pattern , $replace , $file);
-		}
+		// }
 		
 		
 	}
@@ -111,14 +113,14 @@
 
 //处理包含文件的函数
 
-function parseInclude($data)
-{
+// function parseInclude($data)
+// {
 	
-	$path = str_replace(['\'' , '\"'] , '' , $data[1]);
+// 	$path = str_replace(['\'' , '\"'] , '' , $data[1]);
 	
-	display($path);
+// 	display($path);
 	
-	$cacheFileName = rtrim(TPL_CACHE , '/') . '/' . str_replace('.' , '_' , $path) . '.php';
+// 	$cacheFileName = rtrim(TPL_CACHE , '/') . '/' . str_replace('.' , '_' , $path) . '.php';
 	
-	return "<?php include '$cacheFileName';?>";
-}
+// 	return "<?php include '$cacheFileName';
+// }

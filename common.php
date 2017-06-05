@@ -1,8 +1,15 @@
 <?php
 
 	include 'config/config.php';
-	include finder('func_mysql.php');
+	
+
+
+	define('FINDER', rtrim(WEBNAME,'/').'/helper/compiler/finder.php');
+	// 酱底层函数递归寻找文件放入config文件中，从而无需多次调用
+	include FINDER;
+	// echo WEBNAME;
 	// 连接数据库
+	include finder('func_mysql.php');
 	$link = connect($bbs_user['host'],$bbs_user['user'],$bbs_user['pwd'],$bbs_user['charset'],$bbs_user['dbName']);
 	// insert($link,$a=['a' => 'b','c' => 'd']);
 ?>

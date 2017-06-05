@@ -23,15 +23,14 @@
 	function select_user($link,$name){
 		$name = parseStr($name);
 		$sql = 'select * from bbs_userdata where username = '.$name;
-		echo $sql;
+		// echo $sql;
 		$result = mysqli_query($link,$sql);
-		var_dump($result);
 		if(!$result){
 			echo '用户名输入错误，请重新输入！';
 			return $password = null;
 		}
 		$row = mysqli_fetch_assoc($result);
-		var_dump($password = $row['password']);
+		$password = $row['password'];
 		return $password;
 	}
 
@@ -140,24 +139,22 @@
 	 */
 	function category($link,$cid = 0){
 		// 判断大板块id是否存在，不存在显示所有信息，存在则显示特定板块信息
-		if ($cid > 0) {
-			$where = "where cid = $cid";
-		}else{
-			$where = 'where parentid = 0';
-		}
+		// 这部分内容集合在pid函数中
+	
 		// $bigid = select($link,'cid,classname','bbs_category',$where);
 		// // 将板块的cid和classname拼接为一个一维数组
 		// foreach ($bigid as $key => $value) {
 		// 	$pid[$value['cid']] = $value['classname'];
-		// }
-		$pid = pid($link);
-
+		// } 
+		// var_dump($cid);
+		$pid = pid($link,$cid);
 		
 		// 子版块提取出来
 		foreach ($pid as $key => $value) {
 			$parentId[] = $value;
 			$data[]=select($link,'*','bbs_category',"where parentid=$key");
 		}
+
 		// 拼接
 		$fin = array_combine($parentId, $data);
 		return $fin;
@@ -165,8 +162,13 @@
 	}
 
 
-	function pid($link){
-		$bigid = select($link,'cid,classname','bbs_category','where parentid = 0');
+	function pid($link,$cid=0){
+		if ($cid > 0) {
+		$where = "where cid = $cid";
+		}else{
+			$where = 'where parentid = 0';
+		}
+		$bigid = select($link,'cid,classname','bbs_category',$where);
 		// 将板块的cid和classname拼接为一个一维数组
 		foreach ($bigid as $key => $value) {
 			$pid[$value['cid']] = $value['classname'];

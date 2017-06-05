@@ -15,7 +15,7 @@
 		<div id="header">
 			<div class="header_top">
 				<ul class="header_ul">
-					<li><a href="#">设为首页</a></li>
+					<li><a href1="#">设为首页</a></li>
 					<li><a href="#">收藏本站</a></li>
 				</ul>
 			</div>
@@ -43,7 +43,7 @@
 		
 				<!-- 已登录模块开始 -->
 				<div class="header_right_admin">
-				<img src="../../public/img/logo.jpg" style="float: right">
+				<img src="{echo TPL_IMG}logo.jpg" style="float: right">
 				<ul class="admin_l" style="float:right">
 					<li style="width: 200px;text-align:right">{$_SESSION['username']}<span class="pipe">|</span></li>
 					<li><button>签到</button><span class="pipe">|</span></li>
@@ -51,7 +51,7 @@
 					<li>设置<span class="pipe">|</span></li>
 					<li>消息<span class="pipe">|</span></li>
 					<li>提醒<span class="pipe">|</span></li>
-					<li>退出</li>
+					<li><a href="/helper/compiler/logout.php">退出</a></li>
 
 					<div class="clr"></div>
 				<ul class="admin_r">
@@ -134,7 +134,7 @@
 				{foreach $value as $k => $v}
 				<div class="main-mod-main">
 					<div class="mod-left">
-						<a href="#"><img src="img/forum.gif" alt=""></a>
+						<a href="#"><img src="{echo TPL_IMG}forum.gif" alt=""></a>
 						<p><a href="#">{$v['classname']}</a><br/>版主：{$v['compere']}</p>
 
 					</div>
@@ -168,7 +168,7 @@
 			<!-- 底部版块 -->
 			<div class="main_bottom">
 				<div class="mod-left bottom_left">
-					<a href="#"><img src="img/logo_88_31.gif" alt=""></a>
+					<a href="#"><img src="{echo TPL_IMG}logo_88_31.gif" alt=""></a>
 					<p><a href="#">官方论坛</a><br/>提供最新 Discuz! 产品新闻、软件下载与技术交流</p>
 				</div>
 				<div class="clr"></div>
