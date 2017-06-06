@@ -6,26 +6,28 @@
 	width: 960px;
 	height: 747px;
 	margin:0 auto;
+
 }
 .publish_error_main{
 	width: 626px;
-	height: 110px;
+	/*height: 110px;*/
 	margin:0 auto;
 	border: 3px solid #f2f2f2;
 	margin-top: 60px;
+	overflow: hidden;
 }
 .publish_error_main img{
 	float: left;
 	width: 35px;
 	height: 35px;
-	/*margin-top: 30px;*/
-	margin:30 17 0 30;
+	margin: 30 17 0 30;
 }
 .p_e_r{
 	float:left;
-	line-height: 15px;
 	height: 45px;
-	margin-top: 15px;
+	margin-top:20px;
+	font-size:20px;
+	line-height:30px;
 }
 .p_e_r span{
 	color: #FF0000;
@@ -35,4 +37,9 @@
 }
 .p_e_r .logout{
 	color: #afd315;
+}
+.place{
+	float: left;
+	height:300px;
+	width:0px;
 }

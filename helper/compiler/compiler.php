@@ -44,10 +44,8 @@
 		}
 
 		file_put_contents($cacheFilepath, $content);
-		// var_dump($data);
 		if (is_array($data)){
 			extract($data);
-
 		}
 		include $cacheFilepath;
 

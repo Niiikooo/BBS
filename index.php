@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 	
 	include 'common.php';
@@ -25,8 +25,22 @@
 	// var_dump($data);
 	// 这个是导航条的函数
 	$pid = pid($link);
-	// 使用模板文件编译
-	// $_SESSION['username'] = '';
+	// 帖子总数等信息汇总
+	$tNum = select($link,'count(id) as count ','bbs_details','where isdel=0');
+	$_SESSION['tNum'] = $tNum[0]['count'];
+
+	// 会员总数汇总
+	$uNum = select($link,'count(uid) as count','bbs_userdata');
+	$_SESSION['uNum'] = $tNum[0]['count'];
+	// 
+	// 新会员查询
+	$newUser = select($link,'regtime,username','bbs_userdata','','order by regtime desc');
+	$_SESSION['newUser'] = $newUser[0]['username'];
+
+	// 会员头像查询
+
+	// 
+	// 编译输出文件
   	display('index.html',$data = compact($_SESSION['username'],'login','data','pid'));
 
 	// 将版块数据提起出来，从表bbs_category

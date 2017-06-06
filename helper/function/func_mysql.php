@@ -18,7 +18,7 @@
 	 * 用户名登录查询
 	 * @param  [type] $link [description]
 	 * @param  [type] $name 用户名输入
-	 * @return [type]       返回用户密码
+	 * @return [type]       返回用户信息数组
 	 */
 	function select_user($link,$name){
 		$name = parseStr($name);
@@ -26,12 +26,12 @@
 		// echo $sql;
 		$result = mysqli_query($link,$sql);
 		if(!$result){
-			echo '用户名输入错误，请重新输入！';
-			return $password = null;
+
+			return false;
 		}
 		$row = mysqli_fetch_assoc($result);
-		$password = $row['password'];
-		return $password;
+		$data = ['password' => $row['password'],'rewardscore' => $row['rewardscore'],'group' => $row['group'],'picture' => $row['picture']];
+		return $data;
 	}
 
 

@@ -43,7 +43,7 @@
 		
 				<!-- 已登录模块开始 -->
 				<div class="header_right_admin">
-				<img src="{echo TPL_IMG}logo.jpg" style="float: right">
+				<img src="{$_SESSION['picture']}" style="float: right">
 				<ul class="admin_l" style="float:right">
 					<li style="width: 200px;text-align:right">{$_SESSION['username']}<span class="pipe">|</span></li>
 					<li><button>签到</button><span class="pipe">|</span></li>
@@ -55,8 +55,8 @@
 
 					<div class="clr"></div>
 				<ul class="admin_r">
-					<li>积分：<span class="pipe">|</span></li>
-					<li>用户组：</li>
+					<li>积分：{$_SESSION['rewardscore']}<span class="pipe">|</span></li>
+					<li>用户组：{$_SESSION['group']}</li>
 					</ul>
 				</ul>
 				<div class="" style="float: right;">
@@ -110,9 +110,9 @@
 <!-- 						<div class="clr"></div>
  -->						<ul class="chart">
 							<li></li>
-							<li>帖子<span class="pipe">|</span></li>
-							<li>会员<span class="pipe">|</span></li>
-							<li>欢迎新会员</li>
+							<li>帖子：{$_SESSION['tNum']}<span class="pipe">|</span></li>
+							<li>会员：{$_SESSION['uNum']}<span class="pipe">|</span></li>
+							<li>欢迎新会员：{$_SESSION['newUser']}</li>
 						</ul>
 						<div class="clr"></div>
 					</div>

@@ -12,7 +12,8 @@
 			display:none;
 		}</style>';
 	}
+	// 输出登出文件
 	display('logout.html');
-	if(isset($_SESSION['username'])){
-		unset($_SESSION['username']);	
-	}
+	// 删除session
+	array_splice($_SESSION, 0);	
+	

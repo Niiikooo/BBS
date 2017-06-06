@@ -9,7 +9,7 @@
 				<a href="/index.php"><img src="/public/img/logo.jpg" alt="logo"></a>
 				<!-- 未登录模块 -->
 				<div class="header_right visitor" style="">
-				<form action="{echo '?'.mt_rand()}" method="post">
+				<form action="{echo '/helper/compiler/login_verify.php?'.mt_rand()}" method="post">
 				<ul>
 					<li><label for="username">用户名</label></li>
 					<li><input type="text" name="username" style="" id="username" class="form-control"></li>
@@ -41,8 +41,8 @@
 
 					<div class="clr"></div>
 				<ul class="admin_r">
-					<li>积分：<span class="pipe">|</span></li>
-					<li>用户组：</li>
+					<li>积分：{$_SESSION['rewardscore']}<span class="pipe">|</span></li>
+					<li>用户组：{$_SESSION['group']}</li>
 					</ul>
 				</ul>
 				<div class="" style="float: right;">
