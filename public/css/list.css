@@ -44,9 +44,17 @@
 }
 .list_r button:first-child{
 	float:left;
+	background-color:#337ab7;
+	color:white;
 }.list_r button{
 	float:right;
 	margin:12px 0px;
+	background:#337ab7;
+	color:white;
+}
+.list_r button:hover{
+	background-color: #337ba7;
+	color: white;
 }
 .list_r_b{
 	width: 813px;
@@ -98,4 +106,8 @@
 }
 .list_table{
 	text-align: center;
+}
+.down{
+	left:5px;
+	font-size: 12px;
 }

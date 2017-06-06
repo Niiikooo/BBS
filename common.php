@@ -1,7 +1,7 @@
 <?php
 
 	include 'config/config.php';
-	
+		
 
 
 	define('FINDER', rtrim(WEBNAME,'/').'/helper/compiler/finder.php');
@@ -12,4 +12,23 @@
 	include finder('func_mysql.php');
 	$link = connect($bbs_user['host'],$bbs_user['user'],$bbs_user['pwd'],$bbs_user['charset'],$bbs_user['dbName']);
 	// insert($link,$a=['a' => 'b','c' => 'd']);
+	// 
+	// 
+	// 
+	// 头部文件开始
+	// include '../../common.php';
+	include finder('compiler.php');
+	session_start();
+	if(isset($_SESSION['username']) && $_SESSION['username']!=null){
+		echo '<style>.visitor{
+			display:none;
+		}</style>';
+	}else{
+		echo '<style>.header_right_admin{
+			display:none;
+		}</style>';
+	}
+	// 这个是导航条的函数
+	$pid = pid($link);
+// 头部文件结束
 ?>

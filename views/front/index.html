@@ -15,7 +15,7 @@
 		<div id="header">
 			<div class="header_top">
 				<ul class="header_ul">
-					<li><a href1="#">设为首页</a></li>
+					<li><a href="#">设为首页</a></li>
 					<li><a href="#">收藏本站</a></li>
 				</ul>
 			</div>
@@ -35,8 +35,8 @@
 				</ul>
 				</form>
 				<div class="header_right_r">
-					<div><a href="#">找回密码</a></div>
-					<div><a href="#">立即注册</a></div>
+					<div><a href="/helper/compiler/findpwd.php">找回密码</a></div>
+					<div><a href="/helper/compiler/reg.php">立即注册</a></div>
 				</div>
 				</div>
 				<!-- 结束 -->
@@ -124,7 +124,6 @@
 			<!-- 主体分块 大板块开始 -->
 			<!-- 添加循环语句 -->
 			<div class="main">
-			<!-- <?php var_dump($data);?> -->
 			{foreach $data as $key => $value}
 	
 			<div class="main-mod">
@@ -134,8 +133,8 @@
 				{foreach $value as $k => $v}
 				<div class="main-mod-main">
 					<div class="mod-left">
-						<a href="#"><img src="{echo TPL_IMG}forum.gif" alt=""></a>
-						<p><a href="#">{$v['classname']}</a><br/>版主：{$v['compere']}</p>
+						<a href="/helper/compiler/list.php?cid={$v['cid']}"><img src="{echo TPL_IMG}forum.gif" alt=""></a>
+						<p><a href="/helper/compiler/list.php?cid={$v['cid']}">{$v['classname']}</a><br/>版主：{$v['compere']}</p>
 
 					</div>
 

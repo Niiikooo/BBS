@@ -53,5 +53,50 @@
 				
 				<div class="clr"></div>
 			</div>
-		</div>
-		<div class="clr"></div>
+</div>
+<div id="search">
+			<div class="search_top">
+				<ul class="">
+				<a href="?cid=0"><li class="search_sy">首页</li></a>
+					<li class="dn"></li>
+				{foreach $pid as $key => $value}
+					
+					<a href="?cid={$key}"><li class="search_js">{$value}</li></a>
+					<li class="dn"></li>
+					<!-- <a href="#"><li class="search_cx">程序人生</li></a> -->
+				{/foreach}
+				</ul>
+			</div>
+			<div class="search_down">
+				
+					<form action="serach.php" method="get">
+						<a href="#"><div class="glass"></div></a>
+						<div class="glass_search"><input type="text" name="search" class="search_input"></div>
+						<div class="sh">
+							<button type="submit">搜索</button>
+						</div>
+						<ul style="" class="search_ul">
+							<li>热搜：</li>
+							<li><a href="#">活动</a></li>
+							<li><a href="#">交友</a></li>
+							<li><a href="#">教程</a></li><div class="clr"></div>
+						</ul>
+						<div class="clr"></div>
+					</form>
+					<div class="path ">
+						<ol class="breadcrumb" >
+						<li class="home"></li>
+						<!-- <ul class="path_a"> -->
+						<li><a href="#">论坛</a></li>
+
+							
+						<!-- </ul> -->
+						</ol>
+<!-- 						<div class="clr"></div>
+ -->						
+						<div class="clr"></div>
+					</div>
+				
+			</div>
+</div>
+<div class="clr"></div>

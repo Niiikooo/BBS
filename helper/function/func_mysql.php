@@ -30,7 +30,7 @@
 			return false;
 		}
 		$row = mysqli_fetch_assoc($result);
-		$data = ['password' => $row['password'],'rewardscore' => $row['rewardscore'],'group' => $row['group'],'picture' => $row['picture']];
+		$data = ['password' => $row['password'],'rewardscore' => $row['rewardscore'],'group' => $row['group'],'picture' => $row['picture'],'uid' => $row['uid']];
 		return $data;
 	}
 
@@ -56,7 +56,7 @@
 			echo '数据库查询失败！';
 			return false;
 		}
-		if(!$result && mysqli_num_rows($result)){
+		if(!$result || (mysqli_affected_rows($link)==null)){
 			return false;
 		}
 		while ($rows = mysqli_fetch_assoc($result)){
@@ -91,6 +91,7 @@
 			return false;
 		}
 		return true;
+		mysqli_close($link);
 
 	}
 
@@ -104,6 +105,7 @@
 			exit();
 
 		}
+		mysqli_close($link);
 	}
 	// 修改
 	function updata($link,$sheet,$where){
@@ -114,6 +116,7 @@
 			exit();
 
 		}
+		mysqli_close($link);
 
 	}
 
@@ -125,6 +128,7 @@
 		}else if(is_array($str)){
 			return array_map('parseStr',$str);
 		}
+
 	}
 
 	/**
@@ -158,6 +162,7 @@
 		// 拼接
 		$fin = array_combine($parentId, $data);
 		return $fin;
+		
 
 	}
 
@@ -174,4 +179,5 @@
 			$pid[$value['cid']] = $value['classname'];
 		}
 		return $pid;
+
 	}
