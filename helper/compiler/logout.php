@@ -13,7 +13,7 @@
 	// 	}</style>';
 	// }
 	// 输出登出文件
-	display('logout.html',compact('pid'));
+	display('logout.html',compact('pid','breadcrumb'));
 	// 删除session
 	array_splice($_SESSION, 0);	
 	var_dump($_SESSION);

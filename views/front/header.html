@@ -57,20 +57,21 @@
 <div id="search">
 			<div class="search_top">
 				<ul class="">
-				<a href="?cid=0"><li class="search_sy">首页</li></a>
+				<a href="/index.php?cid=0"><li class="search_sy">首页</li></a>
 					<li class="dn"></li>
 				{foreach $pid as $key => $value}
 					
-					<a href="?cid={$key}"><li class="search_js">{$value}</li></a>
+					<a href="/index.php?cid={$key}"><li class="search_js">{$value}</li></a>
 					<li class="dn"></li>
 					<!-- <a href="#"><li class="search_cx">程序人生</li></a> -->
 				{/foreach}
 				</ul>
 			</div>
+			<div class="clr"></div>
 			<div class="search_down">
 				
 					<form action="serach.php" method="get">
-						<a href="#"><div class="glass"></div></a>
+						<div><a href="#"><div class="glass"></div></a></div>
 						<div class="glass_search"><input type="text" name="search" class="search_input"></div>
 						<div class="sh">
 							<button type="submit">搜索</button>
@@ -83,19 +84,22 @@
 						</ul>
 						<div class="clr"></div>
 					</form>
-					<div class="path ">
+			<!-- 导航条开始 -->
+					<div class="path">
 						<ol class="breadcrumb" >
-						<li class="home"></li>
-						<!-- <ul class="path_a"> -->
-						<li><a href="#">论坛</a></li>
-
+							<li class="home"><a href=""></a></li>
+							<!-- <ul class="path_a"> -->
+							<li><a href="/index.php">论坛</a></li>
 							
-						<!-- </ul> -->
+							{foreach $breadcrumb as $key => $value}							
+							<li><a href="/index.php?cid={$key}">{$value}</a></li>
+							{/foreach}
 						</ol>
 <!-- 						<div class="clr"></div>
  -->						
 						<div class="clr"></div>
 					</div>
+			<!-- 导航条结束 -->
 				
 			</div>
 </div>

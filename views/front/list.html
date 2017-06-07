@@ -13,7 +13,7 @@
 </head>
 <body>
 	<div id="container">
-		{P display('header.html',compact('pid'))}	
+		{P display('header.html',compact('pid','breadcrumb'))}	
 			<!-- 主体部分开始 -->
 			<div class="list" style="overflow: hidden;">
 <!-- 左侧导航栏 -->
@@ -46,11 +46,14 @@
 	<div class="list_r">
 	 	<!-- 右侧上部开始 -->
 		<div class="list_r_h">
-			<p>内核源码 今日：<span class="pipe">|</span>主题：</p>
-			<p>版主：</p>
+			<p>{$bmdata['cidname']} 今日：{$bmdata['listToday']}<span class="pipe">|</span>主题：{$bmdata['detailsNum']}</p>
+			<p>版主：{foreach $bmdata['bmName'] as $key => $value}
+				{$value}&nbsp;&nbsp;&nbsp;&nbsp;
+			{/foreach}
+			</p>
 		</div>
 		<div>
-			<a href="{$publish}"><button type="button" class="btn btn-default btn-lg">发帖<span class="glyphicon glyphicon-chevron-down down"></span></button></a>
+			<a href="{$publish}?cid={$_GET['cid']}"><button type="button" class="btn btn-default btn-lg">发帖<span class="glyphicon glyphicon-chevron-down down"></span></button></a>
 			<button type="button" class="btn btn-default btn-lg">返回</button>
 		</div>
 		<div class="clr" style="clear:both"></div>

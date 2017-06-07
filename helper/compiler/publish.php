@@ -21,4 +21,4 @@
 
 
 // 编译
-	display('publish.html',compact('pid'));
+	display('publish.html',compact('pid','breadcrumb'));

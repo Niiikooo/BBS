@@ -11,4 +11,4 @@
 	// }</style>';
 	
 
-	display('reg.html',compact('pid'));
+	display('reg.html',compact('pid','breadcrumb'));

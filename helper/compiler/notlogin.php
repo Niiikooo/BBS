@@ -2,4 +2,4 @@
 
 	include '../../common.php';
 
-	display('notlogin.html',compact('pid'));
+	display('notlogin.html',compact('pid','breadcrumb'));

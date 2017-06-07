@@ -39,9 +39,9 @@
 
 	// 会员头像查询
 	// var_dump($_SESSION);
-	// 
+	// var_dump($breadcrumb);
 	// 编译输出文件
-  	display('index.html',$data = compact('login','data','pid'));
+  	display('index.html',$data = compact('login','data','pid','breadcrumb'));
   
 
 	// 将版块数据提起出来，从表bbs_category

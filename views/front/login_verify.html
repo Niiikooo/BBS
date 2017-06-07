@@ -10,7 +10,8 @@
 </head>
 <body>
 	<div id="container">
-		{P display('header.html',compact('pid'))}
+	<?php var_dump($breadcrumb);?>
+		{P display('header.html',compact('pid','breadcrumb'))}
 		
 		{P display($login,compact('refer'))}
 		{P display('footer.html')}
