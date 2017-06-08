@@ -83,8 +83,8 @@
 		$fields = implode(',', $k);
 		$values = parseStr($v);
 		$values = implode(',',$values);
-
-		$sql = "insert into ".$sheet.' ('.$fields.')'.'values('.$values.'); ';
+		var_dump($values,$fields);
+		$sql = "insert into ".$sheet.' ('.$fields.')'.' values('.$values.'); ';
 		echo $sql;
 		$result = mysqli_query($link,$sql);
 		if(!$result || !(mysqli_affected_rows($link))){
@@ -127,6 +127,8 @@
 			return $str = '\''.$str.'\'';
 		}else if(is_array($str)){
 			return array_map('parseStr',$str);
+		}else{
+			return $str;
 		}
 
 	}

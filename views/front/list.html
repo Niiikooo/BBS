@@ -21,11 +21,12 @@
 		<div class="list_n_h page-header"><h3>版块导航</h3></div>
 		<!-- 开始遍历 -->
 		{foreach $data as $key => $value}
+
 		<ul class="nav nav-pills nav-stacked list_n_m">
 		
-			<li role="presentation" class="active"><a href="#">{$key}</a></li>
+			<li role="presentation" class="active"><a href="/index.php?cid={$value[0]['parentid']}">{$key}</a></li>
 			{foreach $value as $k => $v}
-			<li role="presentation"><a href="#">{$v['classname']}</a></li>
+			<li role="presentation"><a href="/helper/compiler/list.php?cid={$v['cid']}">{$v['classname']}</a></li>
 			{/foreach}
 			<!-- <li role="presentation"><a href="#">开源产品</a></li>
 			<li role="presentation"><a href="#">进阶讨论</a></li>
@@ -72,7 +73,7 @@
 				{else}
 
 				{foreach $details as $key => $value}
-				<tr><td class="l_t"><a href="/helper/compiler/details.php?id={$value['id']}">{$value['title']}</a></td><td class="l_t">{$value['username']}</td><td class="l_t">{$value['replycount']}/{$value['hits']}</td><td class="l_t"></td></tr>
+				<tr><td class="l_t"><a href="/helper/compiler/details.php?tid={$value['id']}">{$value['title']}</a></td><td class="l_t">{$value['username']}</td><td class="l_t">{$value['replycount']}/{$value['hits']}</td><td class="l_t"></td></tr>
 				{/foreach}{/if}
 				<!-- <tr><td class="l_t">asdf</td><td class="l_t">asdf</td><td class="l_t">asdf</td><td class="l_t">asdf</td></tr>
 				<tr><td class="l_t">asdf</td><td class="l_t">asdf</td><td class="l_t">asdf</td><td class="l_t">asdf</td></tr>

@@ -26,7 +26,7 @@
 	$classid = $_GET['cid'];
 	// var_dump($classid);
 // 根据小版块编号查询帖子数据
-	$details = select($link,'*','bbs_details as a,bbs_userdata as b',"where a.classid=$classid and b.uid=a.authorid");
+	$details = select($link,'*','bbs_details as a,bbs_userdata as b',"where a.classid=$classid and b.uid=a.authorid and first = 1");
 
 	// var_dump($details);
 
@@ -34,9 +34,11 @@
 	$data = category($link);
 
 
-// function bm($link){
+
 // $classid = $_GET['cid'];
-// // 今日发帖数目主题数目版主所需要的数据
+
+
+// 今日发帖数目主题数目版主所需要的数据
 // 	// 板块名字
 // 	$nameArr = select($link,'classname','bbs_category',"where cid =$classid");
 // $cidname = $nameArr[0]['classname'];
@@ -66,8 +68,10 @@
 // 		var_dump($bmdata);
 // }
 	$bmdata = bm($link);
-	// 路径导航函数
-
+	var_dump($bmdata);
+	// 路径导航函数breadcrumb集合在common.php中
+	
+	$cate = category($link,0);
 
 // 使用模板文件编译html文件
 	display('list.html',compact('details','data','pid','publish','bmdata','breadcrumb'));

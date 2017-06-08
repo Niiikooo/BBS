@@ -1,0 +1,130 @@
+/*
+css for details_main
+ */
+.details_table tr th:first-child{
+	width: 160px;
+
+}
+.details_table tr th{
+	width: 801px;
+	border : 1px solid #cdcdcd;
+	text-align: center;
+
+
+
+}
+.details{
+	text-align: center;
+	border : 1px solid #cdcdcd;
+}
+.details tr,th,td{
+	border : 1px solid #cdcdcd;
+
+}
+.details_table div{
+	margin:0 auto;
+	/*text-align: center;*/
+}
+.details_sigline{
+	width:inherit;
+}
+.user_logo{
+	width: 112px;
+	height: 112px;
+	display: block;
+	margin: 0 auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.d_dl{
+	float: left;
+	width: 40px;
+	padding:10px 0px;
+
+}
+.d_D{
+	overflow: hidden;
+	width: 120px;
+}
+.d_g{
+	width: 80px;
+}
+.details_table{
+	/*text-align: center;*/
+}
+.d_t_view{
+	padding:10px 10px;
+	border-bottom: none;
+}
+.bor_none{
+	border-top: none;
+	background: #E5EDF2;
+}
+.elevator{
+	background: url(/public/img/fj_btn.png) no-repeat;
+}
+.fl{
+	float:left;
+}
+.fr{
+	float:right;
+}
+.d_content{
+	text-align:left;
+	vertical-align: top;
+	padding:12px;
+}
+.reply{
+	width: 961px;
+/*	height: 220px;
+*/	overflow: hidden;
+	margin: 0 auto;
+	height: 287px;
+	border: 1px solid #cdcdcd;
+}
+.reply img{
+	width: 146px;
+	height: 182px;
+	margin-top: 30;
+	margin-left: 7px;
+}
+
+/*.reply div{
+	width: 160px;
+	float: left;
+}*/
+.reply #editor{
+	width: 756px;
+	height: 137px;
+	float: left;
+
+}
+.reply .editor{
+	float: left;
+	overflow: hidden;
+	height: 219px;;
+	margin-top: 29px;
+	margin-bottom: -14px;
+	margin-left: 20px;;;;
+}
+.r_t{
+	float: left;
+	width: 161px;
+	height: 286px;
+	background: #E5EDF2;
+	border-right: 1px solid #cdcdcd;
+}
+.reply input{
+	margin-left: 20px;
+
+
+}
+.fr input{
+	width: 34px;
+
+}
+
+/*分页样式*/
+.page button{
+	margin:10px 0px;
+}

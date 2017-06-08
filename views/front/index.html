@@ -132,16 +132,22 @@
 				<div class="clr"></div>
 				<!-- 一个小版块 -->
 				{foreach $value as $k => $v}
+
 				<div class="main-mod-main">
 					<div class="mod-left">
 						<a href="/helper/compiler/list.php?cid={$v['cid']}"><img src="{echo TPL_IMG}forum.gif" alt=""></a>
 						<p><a href="/helper/compiler/list.php?cid={$v['cid']}">{$v['classname']}</a><br/>版主：{$v['compere']}</p>
 
 					</div>
+					{P $new = bm($link,$v['cid']);
+					$time = addtime($new['newTitle']['addtime']);
+					
+					}
 
+					<!-- 每个小版块总帖子数 -->
 					<div class="mod-right">
-						<div class="r1"><p>10/9</p></div>
-						<div class="r2"><p><a href="#">本论坛超管的账号、密码都为admin</a><br />2015-10-08 10:49:55 admin</p></div>
+						<div class="r1"><p>{$new['detailsNum']}</p></div>
+						<div class="r2"><p><a href="#">{$new['newTitle']['title']}</a><br />{$time} {$author}</p></div>
 						<div class="clr"></div>
 					</div>
 					<div class="clr"></div>

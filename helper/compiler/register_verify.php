@@ -1,6 +1,7 @@
 <?php
 	include '../../common.php';
-	session_start();
+	session_start();	
+	// 获取回复信息
 	$username = $_POST['username'];
 	$pwd = $_POST['password'];
 	$repwd = $_POST['password'];

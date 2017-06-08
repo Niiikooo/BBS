@@ -14,7 +14,7 @@
 	<div id="container">
 		{P display('header.html',compact('pid','breadcrumb'))}
 		<div id="main">
-		<form action="/helper/compiler/publish_verify.php" method="post">
+		<form action="/helper/compiler/publish_verify.php?cid={$_GET['cid']}" method="post">
 			<div class="editor_title">
 				标题：<input type="text" class="form-control" name="title">
 			</div>
@@ -33,6 +33,7 @@
    		
    			<button type="submit" class="btn btn-default">提交</button>
    			售价：<input type="text" name="price" value="2" class="form-control price">金币
+
    		</form>
    		<div class="clr" style="clear:both"></div>
 		</div>

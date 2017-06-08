@@ -2,6 +2,7 @@
 
 	
 	include 'common.php';
+	include finder('details_func.php');
 	// include finder('compiler.php');
 	// session_start();
 	// if(isset($_SESSION['username']) && $_SESSION['username']!=null){
@@ -22,6 +23,7 @@
 		$cid = $_GET['cid'];
 	}
 	$data = category($link,$cid);
+	 // var_dump($data);
 	// var_dump($data);
 	// 这个是导航条的函数
 	$pid = pid($link);
@@ -40,9 +42,17 @@
 	// 会员头像查询
 	// var_dump($_SESSION);
 	// var_dump($breadcrumb);
+	// 
+	// 首页板块小信息
+	// foreach ($data as $key => $value) {
+	// 	foreach ($value as $k => $v) {
+	// 		$bmUser[] = bm($link,$v['cid']);
+
+	// 	}
+	// }
 	// 编译输出文件
-  	display('index.html',$data = compact('login','data','pid','breadcrumb'));
-  
+  	display('index.html',$data = compact('login','data','pid','breadcrumb','link'));
+
 
 	// 将版块数据提起出来，从表bbs_category
 

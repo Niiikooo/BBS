@@ -1,9 +1,6 @@
 <?php
 
 	include 'config/config.php';
-		
-
-
 	define('FINDER', rtrim(WEBNAME,'/').'/helper/compiler/finder.php');
 	// 酱底层函数递归寻找文件放入config文件中，从而无需多次调用
 	include FINDER;
@@ -33,27 +30,51 @@
 
 
 //封装一个函数返回路径导航的相关数组，组合了导航条所需数组
+	/**
+	 * 路径导航函数
+	 * @return array 路径导航的数组
+	 */
 	function breadcrumb(){
 		$link = connect('localhost','root','','utf8','bbs');
-		if (!isset($_GET['cid'])) {
+		if (!isset($_GET['cid']) && !isset($_GET['tid'])) {
 			return $cidData = [''=>''];
-		}
-		$cid = $_GET['cid'];
+		}elseif (isset($_GET['tid'])){
+			$details = select($link,'classid as cid,id as listid','bbs_details',"where id =".$_GET['tid']);
+			$cid = $details[0]['cid'];
+		}else{$cid = $_GET['cid'];}
+		
 		// var_dump($cid);
 		// 获取当前板块全部信息
+			// 板块信息
+		
 		$ciddata = select($link,'a.*,b.classname as bigname,b.cid as pid','bbs_category as a,bbs_category as b',"where a.cid = $cid and a.parentid = b.cid");
+			// 帖子信息
+		
 		// 取出其中的键名
+		// var_dump($ciddata);
 		$cidd = $ciddata[0]['cid'];
 		$pid = $ciddata[0]['pid'];
+		// $parentid = $ciddata[0]['parentid'];
 		$cidData["$pid"] = $ciddata[0]['bigname'];
-		$cidData["$cidd"] = $ciddata[0]['classname'];
-		var_dump($cidData);
+		// $cidData['parentid'] = $parentid;
+		$cidData['classname']["$cidd"] = $ciddata[0]['classname'];
+		// var_dump($cidData);
 		// var_dump($ciddata);
 		// 如果为大板块，则cidData为空，设置如下
 		if (!$ciddata) {
  			$ciddata = select($link,'classname','bbs_category',"where cid = $cid");
 			$cidData[$cid] = $ciddata[0]['classname'];
 			array_shift($cidData);
+		}
+
+		// 如果是帖子页面，则添加本帖子标题到路径导航栏
+			// 帖子标题
+			
+		if (isset($_GET['tid'])) {
+			$tid = $_GET['tid'];
+			$title = select($link,'title','bbs_details',"where id=$tid");
+			$title = $title[0]['title'];
+			$cidData['tid'][$tid] =  $title;
 		}
 		return $cidData;
 
@@ -67,11 +88,11 @@
 
 
 // 这是板块管理员等信息
-function bm($link){
-$classid = $_GET['cid'];
+function bm($link,$cid){
+	
 // 今日发帖数目主题数目版主所需要的数据
 	// 板块名字
-	$nameArr = select($link,'classname','bbs_category',"where cid =$classid");
+	$nameArr = select($link,'classname','bbs_category',"where cid =$cid");
 $cidname = $nameArr[0]['classname'];
 	// 今日发帖数目
 		// 当前时间戳（日期ymd）
@@ -82,10 +103,10 @@ $listToday = $listToday[0]['count(*)'];
 	// var_dump($listToday);
 	// 帖子总数，版主
 		// 板块下帖子总数
-		$detailsNum = select($link,'count(*)','bbs_details',"where classid = $classid and first = 1");
+		$detailsNum = select($link,'count(*)','bbs_details',"where classid = $cid and first = 1");
 $detailsNum = $detailsNum[0]['count(*)'];
 		// 版主名字字符串
-		$bmID = select($link,'compere','bbs_category',"where cid = $classid");
+		$bmID = select($link,'compere','bbs_category',"where cid = $cid");
 		// 版主名字数组
 		$bmID = explode(',',$bmID[0]['compere']);
 		// 提取数据
@@ -94,8 +115,28 @@ $detailsNum = $detailsNum[0]['count(*)'];
 			$bmName[] = $bm[0]['username'];
 		}
 		// var_dump($bmName);
+		// 帖子总数
+$tNum = select($link,'count(*)','bbs_details',"where classid=$cid");
+	$tNum = $tNum[0]['count(*)'];
+	// 最新帖的titile,time,authorid
+$new = select($link,'title,addtime,authorid','bbs_details',"where classid = 5 and first = 1",'','order by addtime','limit 0,1');
+	if ($new==null) {
+		$new=['title'=>'','addtime'=>'','authorid'=>''];
+	}else{
+		
+		$newTitle = $new[0];
+	}
+	
+	// var_dump($newData);
 	//全部组装进一个数组
-		return $bmdata = compact('cidname','listToday','detailsNum','bmName');
-		var_dump($bmdata);
+	return $bmdata = compact('cidname','listToday','detailsNum','bmName','tNum','newTitle');
 }
+
+
+
+
+
+
+
+
 ?>

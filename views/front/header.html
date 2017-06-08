@@ -91,7 +91,19 @@
 							<!-- <ul class="path_a"> -->
 							<li><a href="/index.php">论坛</a></li>
 							
-							{foreach $breadcrumb as $key => $value}							
+							{foreach $breadcrumb as $key => $value}		
+							{if $key == 'classname'}
+								{foreach $value as $k => $v}
+								<li><a href="/helper/compiler/list.php?cid={$k}">{$v}</a></li>
+								{/foreach}
+								{P continue}
+							{/if}
+							{if $key == 'tid'}
+								{foreach $value as $k => $v}
+								<li><a href="/helper/compiler/details.php?tid={$k}">{$v}</a></li>
+								{/foreach}
+								{P break}
+							{/if}			
 							<li><a href="/index.php?cid={$key}">{$value}</a></li>
 							{/foreach}
 						</ol>
