@@ -119,21 +119,43 @@ $detailsNum = $detailsNum[0]['count(*)'];
 $tNum = select($link,'count(*)','bbs_details',"where classid=$cid");
 	$tNum = $tNum[0]['count(*)'];
 	// 最新帖的titile,time,authorid
-$new = select($link,'title,addtime,authorid','bbs_details',"where classid = 5 and first = 1",'','order by addtime','limit 0,1');
-	if ($new==null) {
-		$new=['title'=>'','addtime'=>'','authorid'=>''];
-	}else{
+$new = select($link,'title,addtime,authorid','bbs_details',"where classid = $cid and first = 1",'','order by addtime','limit 0,1');
+// var_dump($new,$cid);
+	if (!isset($new) || $new == false) {
+		$new=[0=>[
+		'title'=>'',
+		'addtime'=>'',
+		'authorid'=>'']
+		];
+		// var_dump($new);
+	}
 		
 		$newTitle = $new[0];
-	}
+		$newTitle['authorid'] = uidToname($newTitle['authorid']);
+	
 	
 	// var_dump($newData);
 	//全部组装进一个数组
 	return $bmdata = compact('cidname','listToday','detailsNum','bmName','tNum','newTitle');
 }
 
-
-
+// 酱作者和版主编号转化为用户名
+	/**
+	 * 酱数字id转化为用户名，可使用字符串
+	 * @param  str $name 用户id数字字符串
+	 * @return array       一个包含uid=》用户名的数组
+	 */
+	function uidToname($name){
+		$nameArr = explode(',', $name);
+		$link = connect('localhost','root','','utf8','bbs');
+		foreach ($nameArr as $key => $value) {
+			$temp = select($link,'username','bbs_userdata',"where uid = $value");
+			$newName[$value] = $temp[0]['username'];
+		}
+		// var_dump($newName);
+		return $newName;
+		
+	}
 
 
 

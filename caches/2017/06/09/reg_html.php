@@ -14,7 +14,7 @@
 </head>
 <body>         
 	<div id="container">
-		{P display('header.html',compact('pid','breadcrumb'))}
+		<?php display('header.html',compact('pid','breadcrumb')) ;?>
 		<div class="reg_main">
 		<!-- <div class="r_m_h">
 			<p>立即注册</p>
@@ -60,7 +60,7 @@
 			</form></div>
 			</div>
 		</div>
-		{P display('footer.html')}
+		<?php display('footer.html') ;?>
 	
 
 </body>

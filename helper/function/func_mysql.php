@@ -53,7 +53,7 @@
 		// echo $sql;
 		$result = mysqli_query($link,$sql);
 		if(!$result){
-			var_dump('数据库查询失败！');
+			// var_dump('数据库查询失败！');
 			return false;
 		}
 		if(!$result || (mysqli_affected_rows($link)==null)){

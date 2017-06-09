@@ -24,7 +24,7 @@
 				<a href="/index.php"><img src="/public/img/logo.jpg" alt="logo"></a>
 				<!-- 未登录模块 -->
 				<div class="header_right visitor" style="">
-				<form action="{$login}" method="post">
+				<form action="<?=$login;?>" method="post">
 				<ul>
 					<li><label for="username">用户名</label></li>
 					<li><input type="text" name="username" style="" id="username" class="form-control"></li>
@@ -44,9 +44,9 @@
 		
 				<!-- 已登录模块开始 -->
 				<div class="header_right_admin">
-				<img src="{$_SESSION['picture']}" style="float: right">
+				<img src="<?=$_SESSION['picture'];?>" style="float: right">
 				<ul class="admin_l" style="float:right">
-					<li style="width: 200px;text-align:right">{$_SESSION['username']}<span class="pipe">|</span></li>
+					<li style="width: 200px;text-align:right"><?=$_SESSION['username'];?><span class="pipe">|</span></li>
 					<li><button>签到</button><span class="pipe">|</span></li>
 					<li>我的<span class="pipe">|</span></li>
 					<li>设置<span class="pipe">|</span></li>
@@ -56,8 +56,8 @@
 
 					<div class="clr"></div>
 				<ul class="admin_r">
-					<li>积分：{$_SESSION['rewardscore']}<span class="pipe">|</span></li>
-					<li>用户组：{$_SESSION['group']}</li>
+					<li>积分：<?=$_SESSION['rewardscore'];?><span class="pipe">|</span></li>
+					<li>用户组：<?=$_SESSION['group'];?></li>
 					</ul>
 				</ul>
 				<div class="" style="float: right;">
@@ -75,12 +75,12 @@
 				<ul class="">
 				<a href="?cid=0"><li class="search_sy">首页</li></a>
 					<li class="dn"></li>
-				{foreach $pid as $key => $value}
+				<?php foreach($pid as $key => $value):?>
 					
-					<a href="?cid={$key}"><li class="search_js">{$value}</li></a>
+					<a href="?cid=<?=$key;?>"><li class="search_js"><?=$value;?></li></a>
 					<li class="dn"></li>
 					<!-- <a href="#"><li class="search_cx">程序人生</li></a> -->
-				{/foreach}
+				<?php endforeach;?>
 				</ul>
 			</div>
 			<div class="search_down">
@@ -111,9 +111,9 @@
 <!-- 						<div class="clr"></div>
  -->						<ul class="chart">
 							<li></li>
-							<li>帖子：{$_SESSION['tNum']}<span class="pipe">|</span></li>
-							<li>会员：{$_SESSION['uNum']}<span class="pipe">|</span></li>
-							<li>欢迎新会员：{$_SESSION['newUser']}</li>
+							<li>帖子：<?=$_SESSION['tNum'];?><span class="pipe">|</span></li>
+							<li>会员：<?=$_SESSION['uNum'];?><span class="pipe">|</span></li>
+							<li>欢迎新会员：<?=$_SESSION['newUser'];?></li>
 						</ul>
 						<div class="clr"></div>
 					</div>
@@ -125,37 +125,37 @@
 			<!-- 主体分块 大板块开始 -->
 			<!-- 添加循环语句 -->
 			<div class="main">
-			{foreach $data as $key => $value}
+			<?php foreach($data as $key => $value):?>
 	
 			<div class="main-mod">
-				<div class="navnav"><span><a href="#">{$key}</a></span></div>
+				<div class="navnav"><span><a href="#"><?=$key;?></a></span></div>
 				<div class="clr"></div>
 				<!-- 一个小版块 -->
-				{foreach $value as $k => $v}
+				<?php foreach($value as $k => $v):?>
 
 				<div class="main-mod-main">
 					<div class="mod-left">
-						<a href="/helper/compiler/list.php?cid={$v['cid']}"><img src="{echo TPL_IMG}forum.gif" alt=""></a>
-						<p><a href="/helper/compiler/list.php?cid={$v['cid']}">{$v['classname']}</a><br/>
+						<a href="/helper/compiler/list.php?cid=<?=$v['cid'];?>"><img src="<?php echo TPL_IMG ;?>forum.gif" alt=""></a>
+						<p><a href="/helper/compiler/list.php?cid=<?=$v['cid'];?>"><?=$v['classname'];?></a><br/>
 											
-						{P $new = bm($link,$v['cid'])}
+						<?php $new = bm($link,$v['cid']) ;?>
 						版主：
-						{foreach $new['bmName'] as $a => $b}
-						{$b}
-						{/foreach}</p>
+						<?php foreach($new['bmName'] as $a => $b):?>
+						<?=$b;?>
+						<?php endforeach;?></p>
 						
 
 					</div>
-					{P $time = addtime($new['newTitle']['addtime'])}
+					<?php $time = addtime($new['newTitle']['addtime']) ;?>
 
 					<!-- 每个小版块总帖子数 -->
 					<div class="mod-right">
-						<div class="r1"><p>{$new['detailsNum']}</p></div>
-						<div class="r2"><p><a href="#">{$new['newTitle']['title']}</a><br />{$time} 
+						<div class="r1"><p><?=$new['detailsNum'];?></p></div>
+						<div class="r2"><p><a href="#"><?=$new['newTitle']['title'];?></a><br /><?=$time;?> 
 						<!-- 遍历作者信息开始 -->
-						{foreach $new['newTitle']['authorid'] as $kN => $vN}
-						{$vN}
-						{/foreach}
+						<?php foreach($new['newTitle']['authorid'] as $kN => $vN):?>
+						<?=$vN;?>
+						<?php endforeach;?>
 						<!-- 遍历作者信息结束 --></p></div>
 						<div class="clr"></div>
 					</div>
@@ -164,14 +164,14 @@
 				</div>
 				
 				<div class="clr"></div>
-				{/foreach}
+				<?php endforeach;?>
 				<!-- 小版块完 -->
 				
 				
 				
 
 			</div>
-			{/foreach}
+			<?php endforeach;?>
 			</div>
 			<!-- end of main-mod 大板块 -->
 			<!-- 第二个板块开始 -->
@@ -183,7 +183,7 @@
 			<!-- 底部版块 -->
 			<div class="main_bottom">
 				<div class="mod-left bottom_left">
-					<a href="#"><img src="{echo TPL_IMG}logo_88_31.gif" alt=""></a>
+					<a href="#"><img src="<?php echo TPL_IMG ;?>logo_88_31.gif" alt=""></a>
 					<p><a href="#">官方论坛</a><br/>提供最新 Discuz! 产品新闻、软件下载与技术交流</p>
 				</div>
 				<div class="clr"></div>

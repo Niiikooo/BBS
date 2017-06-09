@@ -9,7 +9,7 @@
 				<a href="/index.php"><img src="/public/img/logo.jpg" alt="logo"></a>
 				<!-- 未登录模块 -->
 				<div class="header_right visitor" style="">
-				<form action="{echo '/helper/compiler/login_verify.php?'.mt_rand()}" method="post">
+				<form action="<?php echo '/helper/compiler/login_verify.php?'.mt_rand() ;?>" method="post">
 				<ul>
 					<li><label for="username">用户名</label></li>
 					<li><input type="text" name="username" style="" id="username" class="form-control"></li>
@@ -29,20 +29,20 @@
 		
 				<!-- 已登录模块开始 -->
 				<div class="header_right_admin">
-				<img src="{echo TPL_IMG}logo.jpg" style="float: right">
+				<img src="<?php echo TPL_IMG ;?>logo.jpg" style="float: right">
 				<ul class="admin_l" style="float:right">
-					<li style="width: 200px;text-align:right">{$_SESSION['username']}<span class="pipe">|</span></li>
+					<li style="width: 200px;text-align:right"><?=$_SESSION['username'];?><span class="pipe">|</span></li>
 					<li><button>签到</button><span class="pipe">|</span></li>
 					<li>我的<span class="pipe">|</span></li>
 					<li>设置<span class="pipe">|</span></li>
 					<li>消息<span class="pipe">|</span></li>
 					<li>提醒<span class="pipe">|</span></li>
-					<li><a href="{echo TPL_PHP}logout.php">退出</a></li>
+					<li><a href="<?php echo TPL_PHP ;?>logout.php">退出</a></li>
 
 					<div class="clr"></div>
 				<ul class="admin_r">
-					<li>积分：{$_SESSION['rewardscore']}<span class="pipe">|</span></li>
-					<li>用户组：{$_SESSION['group']}</li>
+					<li>积分：<?=$_SESSION['rewardscore'];?><span class="pipe">|</span></li>
+					<li>用户组：<?=$_SESSION['group'];?></li>
 					</ul>
 				</ul>
 				<div class="" style="float: right;">
@@ -59,12 +59,12 @@
 				<ul class="">
 				<a href="/index.php?cid=0"><li class="search_sy">首页</li></a>
 					<li class="dn"></li>
-				{foreach $pid as $key => $value}
+				<?php foreach($pid as $key => $value):?>
 					
-					<a href="/index.php?cid={$key}"><li class="search_js">{$value}</li></a>
+					<a href="/index.php?cid=<?=$key;?>"><li class="search_js"><?=$value;?></li></a>
 					<li class="dn"></li>
 					<!-- <a href="#"><li class="search_cx">程序人生</li></a> -->
-				{/foreach}
+				<?php endforeach;?>
 				</ul>
 			</div>
 			<div class="clr"></div>
@@ -91,21 +91,21 @@
 							<!-- <ul class="path_a"> -->
 							<li><a href="/index.php">论坛</a></li>
 							
-							{foreach $breadcrumb as $key => $value}		
-							{if $key == 'classname'}
-								{foreach $value as $k => $v}
-								<li><a href="/helper/compiler/list.php?cid={$k}">{$v}</a></li>
-								{/foreach}
-								{P continue}
-							{/if}
-							{if $key == 'tid'}
-								{foreach $value as $k => $v}
-								<li><a href="/helper/compiler/details.php?tid={$k}">{$v}</a></li>
-								{/foreach}
-								{P break}
-							{/if}			
-							<li><a href="/index.php?cid={$key}">{$value}</a></li>
-							{/foreach}
+							<?php foreach($breadcrumb as $key => $value):?>		
+							<?php if($key == 'classname'):?>
+								<?php foreach($value as $k => $v):?>
+								<li><a href="/helper/compiler/list.php?cid=<?=$k;?>"><?=$v;?></a></li>
+								<?php endforeach;?>
+								<?php continue ;?>
+							<?php endif;?>
+							<?php if($key == 'tid'):?>
+								<?php foreach($value as $k => $v):?>
+								<li><a href="/helper/compiler/details.php?tid=<?=$k;?>"><?=$v;?></a></li>
+								<?php endforeach;?>
+								<?php break ;?>
+							<?php endif;?>			
+							<li><a href="/index.php?cid=<?=$key;?>"><?=$value;?></a></li>
+							<?php endforeach;?>
 						</ol>
 <!-- 						<div class="clr"></div>
  -->						

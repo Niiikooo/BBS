@@ -30,6 +30,9 @@
 	$timeToday = strtotime(date('Y-m-d',time()));
 	// 如果时间在两天前则显示完全时间，否则显示贱时间
 	$timeoff = ($timeToday - $addtime)/24/3600;
+	if (empty($addtime)) {
+		return '';
+	}
 	if ($timeoff>2) {
 		$time = date('Y-m-d h:m:s',$addtime);
 	}elseif ($timeoff>1 && $time<=2) {

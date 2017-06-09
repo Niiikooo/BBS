@@ -67,7 +67,7 @@
 // 		return $bmdata = compact('cidname','listToday','detailsNum','bmName');
 // 		var_dump($bmdata);
 // }
-	$bmdata = bm($link);
+	$bmdata = bm($link,$classid);
 	var_dump($bmdata);
 	// 路径导航函数breadcrumb集合在common.php中
 	
