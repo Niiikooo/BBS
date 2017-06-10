@@ -50,6 +50,7 @@
 
 	// 	}
 	// }
+	var_dump(session_name(),$_COOKIE,$_SESSION);
 	// 编译输出文件
   	display('index.html',$data = compact('login','data','pid','breadcrumb','link'));
 

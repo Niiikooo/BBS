@@ -68,7 +68,6 @@
 // 		var_dump($bmdata);
 // }
 	$bmdata = bm($link,$classid);
-	var_dump($bmdata);
 	// 路径导航函数breadcrumb集合在common.php中
 	
 	$cate = category($link,0);

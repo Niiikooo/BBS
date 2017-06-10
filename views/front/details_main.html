@@ -13,13 +13,13 @@
 	<!-- 表格开始 -->
 	<div class="details">
 		<table class="details_table">
-			<tr><th class="d_t_view">查看:{$table['publish']['hits']}&nbsp;&nbsp;&nbsp;回复:{$table['publish']['replycount']}</th><th>{$table['publish']['title']}</th></tr>
+			<tr><th class="d_t_view">查看：{$table['publish']['hits']}&nbsp;&nbsp;&nbsp;回复：{$table['publish']['replycount']}</th><th class="title">{$table['publish']['title']}</th></tr>
 			<tr><td class="d_t_view">{$table['publish']['username']}</div></td><td>
 				<!-- <div class="sigline details_sigline"></div> -->
 				<div class="fl">
 				&nbsp;&nbsp;&nbsp;发表于：{$table['publish']['addtime']}
 				</div>
-				<div class="fr">电梯直达：<input type="text" name=""><button type="submit" class="btn btn-default elevator"></button></div>
+				<div class="fr">电梯直达：&nbsp;&nbsp;&nbsp;<input type="text" name="" class="form-control">&nbsp;&nbsp;<button type="submit" class="btn btn-default elevator"></button></div>
 				<div class="clr"></div>
 			</td></tr>
 			<tr><td class="bor_none">
@@ -27,9 +27,9 @@
 					<img src="/public/img/logo.jpg" alt="头像" class="user_logo">
 					<div>					
 					<div class="d_D">
-						<div class="d_dl">{$user['tcount']}<br>帖子</div>
-						<div class="d_dl">{$user['exp']}<br>经验</div>
-						<div class="d_dl">{$user['gold']}<br>金币</div>
+						<div class="d_dl"><p class="gold">{$user['tcount']}</p><p>帖子</p></div>
+						<div class="d_dl"><p class="gold">{$user['exp']}</p>经验</div>
+						<div class="d_dl"><p class="gold">{$user['gold']}</p>金币</div>
 						
 					</div></div>
 					<div class="d_D"><div class="clr"></div>
@@ -53,7 +53,7 @@
 				<div class="fl">&nbsp;&nbsp;&nbsp;
 				发表于：{$value['addtime']}
 				</div>
-				<div class="fr">电梯直达：<input type="text" name=""><button type="submit" class="btn btn-default elevator"></button></div>
+				<div class="fr">电梯直达：&nbsp;&nbsp;&nbsp;<input type="text" name="" class="form-control">&nbsp;&nbsp;<button type="submit" class="btn btn-default elevator"></button></div>
 				<div class="clr"></div>
 			</td></tr>
 			<tr><td class="bor_none">

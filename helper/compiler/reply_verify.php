@@ -35,4 +35,11 @@
 		$verify = 'reply_failed.html';
 	}
 	unset($a);
+
+	// 更新对应帖子的回复数
+		// $replycount = 1;
+		update($link,'bbs_details',"replycount=replycount+1","where id = $tid");
+	
+	
+	// 编译
 	display('reply_verify.html',compact('pid','breadcrumb','verify'));

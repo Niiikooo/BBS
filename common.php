@@ -15,6 +15,10 @@
 	// 头部文件开始
 	// include '../../common.php';
 	include finder('compiler.php');
+
+
+	// 设置session名
+	// echo session_name($_SERVER['REMOTE_ADDR']);
 	session_start();
 	if(isset($_SESSION['username']) && $_SESSION['username']!=null){
 		echo '<style>.visitor{
@@ -37,7 +41,7 @@
 	function breadcrumb(){
 		$link = connect('localhost','root','','utf8','bbs');
 		if (!isset($_GET['cid']) && !isset($_GET['tid'])) {
-			return $cidData = [''=>''];
+			return $cidData = [' '=>' '];
 		}elseif (isset($_GET['tid'])){
 			$details = select($link,'classid as cid,id as listid','bbs_details',"where id =".$_GET['tid']);
 			$cid = $details[0]['cid'];

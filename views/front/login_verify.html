@@ -7,10 +7,10 @@
 	<link rel="stylesheet" type="text/css" href="/public/css/base.css"> 
 	<link rel="stylesheet" type="text/css" href="/public/css/index.css">
 	<link rel="stylesheet" type="text/css" href="/public/css/publish_error.css">
+	
 </head>
 <body>
 	<div id="container">
-	<?php var_dump($breadcrumb);?>
 		{P display('header.html',compact('pid','breadcrumb'))}
 		
 		{P display($login,compact('refer'))}

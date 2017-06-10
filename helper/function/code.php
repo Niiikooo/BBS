@@ -18,7 +18,8 @@
 *@param $imgType string
 *@param return string
 */
-
+session_start();
+verify(80,30,4);
 function verify($width = 100 , $height = 40 , $num = 5 , $type = 1 , $imgType = 'jpeg')
 {
 	//准备画布
@@ -92,6 +93,8 @@ function verify($width = 100 , $height = 40 , $num = 5 , $type = 1 , $imgType = 
 	//销毁资源
 	
 	imagedestroy($image);
+
+	$_SESSION['qd'] = $string;
 	
 	return $string;
 }

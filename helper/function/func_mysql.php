@@ -30,7 +30,7 @@
 			return false;
 		}
 		$row = mysqli_fetch_assoc($result);
-		$data = ['password' => $row['password'],'rewardscore' => $row['rewardscore'],'group' => $row['group'],'picture' => $row['picture'],'uid' => $row['uid']];
+		$data = ['password' => $row['password'],'rewardscore' => $row['rewardscore'],'group' => $row['group'],'picture' => $row['picture'],'uid' => $row['uid'],'allowlogin' => $row['allowlogin'],'lasttime' => $row['lasttime']];
 		return $data;
 	}
 
@@ -108,15 +108,15 @@
 		mysqli_close($link);
 	}
 	// 修改
-	function updata($link,$sheet,$where){
-		$sql = 'update '.$sheet.'set $data where '.$where;
+	function update($link,$sheet,$data,$where){
+		$sql = 'update '.$sheet.' set '.$data.' '.$where;
+		echo $sql;
 		$result = mysqli_query($link,$sql);
 		if(!$result || !(mysqli_affected_rows($link))){
 			echo ('修改失败 ！~');
 			exit();
 
 		}
-		mysqli_close($link);
 
 	}
 

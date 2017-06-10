@@ -2,15 +2,23 @@
 
 	include $_SERVER['DOCUMENT_ROOT'].'/common.php';
 	include finder('details_func.php');
-	// 将帖子数据取出来
+// 将帖子数据取出来
 	$tid = $_GET['tid'];
+	update($link,'bbs_userdata',"username = 'ff'",)
 	// var_dump($tid);
 	// 提取发帖
 	$details = select($link,'*','bbs_details,bbs_userdata',"where first=1 and id=$tid");
 	$details = $details[0];
 	$reply = select($link,'*','bbs_details as a,bbs_userdata as b',"where a.first=0 and a.tid=$tid and a.authorid = b.uid",'','order by id asc');
 	// var_dump($reply);
+
 	$table['publish'] = $details;
+	// var_dump($table);
+	//点开帖子的时候更新数据库hits+1
+	$hits = $table['publish']['hits'] + 1;
+	$data = "hits = $hits";
+	// var_dump($data);
+	update($link,'bbs_details',$data,"where id = $tid");
 	
 	// var_dump($table);
 // 处理时间
@@ -42,6 +50,7 @@
 	// 提取回复
 	$reply = select($link,'*','bbs_details as a,bbs_userdata as b',"where a.first=0 and a.tid=$tid and a.authorid = b.uid",''.'order by addtime asc');
 	// var_dump($reply);
+	// var_dump($reply);
 	if (!$reply) {
 		
 	}else{
@@ -53,7 +62,7 @@
 	}
 	}
 	$table['reply'] = $reply;
-	var_dump($table);
+	// var_dump($table);
 
 	// 发帖回复按钮能不能恩
 	

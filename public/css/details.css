@@ -68,6 +68,7 @@ css for details_main
 }
 .fr{
 	float:right;
+	width:159px;
 }
 .d_content{
 	text-align:left;
@@ -121,7 +122,20 @@ css for details_main
 }
 .fr input{
 	width: 34px;
+	height: 20px;
+	display: inline-block;
 
+}
+.form-control{
+	display: inline-block;
+}
+.d_dl{
+	text-align: center
+}
+.details_table .title{
+	text-align:left;
+	font-size: 23px;
+	padding-left:10px;
 }
 
 /*分页样式*/

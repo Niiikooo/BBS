@@ -13,6 +13,7 @@
 		$tcount = $tcount[0]['count'];
 		// var_dump($tcount);
 		$user = select($link,'gold,exp,picture','bbs_userdata as a,bbs_details as b',"where a.uid = $aid and b.authorid=$aid and first = $first");
+		// var_dump($user);
 		$gold = $user[0]['gold'];
 		$exp = $user[0]['exp'];
 		$picture = $user[0]['picture'];
@@ -35,7 +36,7 @@
 	}
 	if ($timeoff>2) {
 		$time = date('Y-m-d h:m:s',$addtime);
-	}elseif ($timeoff>1 && $time<=2) {
+	}elseif ($timeoff>1 && $timeoff<=2) {
 		$time = '前天 '.date('h:i:s',$addtime);
 	}elseif ($timeoff<=1 && $timeoff >0) {
 		$time = '昨天 '.date('h:i:s',$addtime);
