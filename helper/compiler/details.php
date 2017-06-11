@@ -4,7 +4,7 @@
 	include finder('details_func.php');
 // 将帖子数据取出来
 	$tid = $_GET['tid'];
-	update($link,'bbs_userdata',"username = 'ff'",)
+	// update($link,'bbs_userdata',"username = 'ff'",)
 	// var_dump($tid);
 	// 提取发帖
 	$details = select($link,'*','bbs_details,bbs_userdata',"where first=1 and id=$tid");

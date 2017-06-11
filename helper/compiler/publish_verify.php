@@ -4,7 +4,7 @@
 	if (!isset($_SESSION['username'])) {
 		
 	}
-	var_dump($_POST);
+	var_dump($_POST,$_SESSION);
 	// 传入变量
 	$tid = 0;
 	if (!isset($_POST['content']) || !isset($_POST['title'])) {
@@ -23,7 +23,9 @@
 	$addip = ip2long($addip);
 	$classid = $_GET['cid'];
 	$data = compact('tid','content','first','authorid','addtime','addip','classid');
-
+	if ($_SESSION['qd'] != $_POST['qd']) {
+		$publish_check = 'publish_error.html';
+	}else{
 	// 插入数据库，返回是否插入值
 	$a = insert($link,'bbs_details',$data);
 	var_dump($a);
@@ -32,6 +34,7 @@
 	}else{
 		$publish_check = 'publish_error.html';
 	}
+}
 
 // 如果加入未成功显示失败消息
 	// if (condition) {
