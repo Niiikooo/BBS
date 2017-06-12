@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>用户管理</title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<form action="/admin/userDel.php" method="post">
+	<table>
+		<th></th><th>用户名</th><th>积分</th><th>注册时间</th><th>用户类型</th><th>积分</th><th>详情</th><th>锁定用户</th>
+		<tr>
+			<td><input type="checkbox" name="uid[]" value="28"></td>
+			<td>asdf</td>
+			<td>{$userdata['rewardscore']</td>
+			<td>{$userdata['regtime']}</td>
+			<td>{$userdata['group']}</td>
+			<td><a href="#">积分</a></td>
+			<td><a href="#">详情</a></td>
+			<td><a href="#">锁定用户</a></td>
+		</tr>
+	<!-- 	<tr>
+			<td><input type="checkbox" name="uid[]" value="26"></td>
+			<td>asdf</td>
+			<td>{$userdata['rewardscore']</td>
+			<td>{$userdata['regtime']}</td>
+			<td>{$userdata['group']}</td>
+			<td><a href="#">积分</a></td>
+			<td><a href="#">详情</a></td>
+			<td><a href="#">锁定用户</a></td>
+		</tr> -->
+		<tr><td><button type="submit">删除</button></td></tr>
+	</table>
+	</form>
+</body>
+</html>

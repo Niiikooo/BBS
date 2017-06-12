@@ -1,0 +1,27 @@
+<head>
+	<link rel="stylesheet" type="text/css" href="/public/css/admin.css">
+</head>
+
+
+<div>
+	<div>版块管理</div>
+	<div>
+		<form action="/admin/categoryMan.php" method="post">
+		<table class="cidMan">
+			<tr><th>显示顺序</th><th>版块名称</th><th>版块介绍</th><th>隐藏版块</th><th>设置版主</th></tr>
+			
+			<!-- 大板块开始 -->
+			<tr><td><input type="text"></td>
+			<td><input type="text"></td>
+			<td></td>
+			<td></td></tr>
+			<!-- 大板块结束 -->
+
+			<!-- 小板块开始 -->
+			<tr><td><input type="text" value="{$cid}"></td><td><span>|————</span><input type="text" value="{$classname}"></td><td><input type="textarea"></td><td><input type="checkbox" name="cid[]"></td><td><input type="text"></td></tr>
+			<!-- 小板块结束 -->
+			<tr><td><button type="submit">提交</button></td></tr>
+		</table>
+		</form>
+	</div>
+</div>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>修改确认</title>
+	<meta charset="utf-8">
+	
+	<!-- <link rel="stylesheet" type="text/css" href="../../public/css/base.css">  -->
+	<!-- <link rel="stylesheet" type="text/css" href="../../public/css/index.css"> -->
+	<link rel="stylesheet" type="text/css" href="../../public/css/bootstrap.min.css"> 
+	<link rel="stylesheet" type="text/css" href="../../public/css/admin.css">
+
+</head>
+<body>
+	<div id="container">
+	<div class="cidMan">
+	<div class="cm_t"><h2>版块管理</h2></div>
+	<div>
+		<form action="/admin/manage_verify.php" method="post">
+		<table class="cidMan">
+
+		<!-- 开始遍历 -->
+		
+			<tr><th>显示顺序</th><th>版块名称</th><th>版块介绍</th><th class="checkbox">隐藏版块</th><th>设置版主</th></tr>
+			<!-- 大板块开始 -->
+			{foreach $data as $key => $value}
+			<tr class="admin_sigline"></tr><tr class="admin_sigline"></tr><tr class="admin_sigline"></tr>
+			{foreach $pid as $K => $V}
+			{if $V['classname'] != $key}
+			{else}
+			<tr><td><input type="text" class="form-control" value="{$V['orderby']}" name="order[{$V['cid']}]"></td>
+			<td><input type="text" class="form-control" value="{$V['classname']}" name="classname[]"></td>
+			<td><input type="text" class="form-control" value="{$V['description']}" name="desc[]"></td>
+			<td class="checkbox"><input type="checkbox" class="check" name="cid[]" value="{$V['cid']}"></td><td><input type="text" class="form-control" value="{P $uid = uidToname($V['compere']);
+				echo implode(',',$uid)}" name="bm[]"></td></tr>
+				<tr class="admin_sigline"></tr>
+
+			<div class="clr"></div>
+			{/if}
+			{/foreach}
+			<!-- 大板块结束 -->
+			{foreach $value as $k => $v}
+			<!-- 隔开空间用 -->
+			<tr class="admin_sigline"></tr>
+			<!-- 小板块开始 -->
+			<tr><td><input type="text" value="{$v['orderby']}" class="form-control" name="order[]"></td><td><span>|————</span><input type="text" value="{$v['classname']}" class="form-control classname" name="classname[]"></td><td><input type="textarea" class="form-control" value="{$v['description']}" name="desc[]"></td><td class="checkbox" style="width: 50px"><input type="checkbox" name="cid[]" value="{$v['cid']}" class="check"></td><td><input type="text" class="form-control" value="{P $uid = uidToname($v['compere']);echo implode(',',$uid)}" name="bm[]"></td></tr>
+			{/foreach}
+			
+			<!-- 小板块结束 -->
+			{/foreach}
+			<tr class="admin_sigline"></tr>
+			<tr><td><input type="submit" class="btn btn-default" value="提交"></td></tr>
+			
+			<!-- 结束遍历 -->
+		</table>
+		</form>
+	</div>
+</div>
+	</div>
+</body>
+</html>

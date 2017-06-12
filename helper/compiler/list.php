@@ -31,7 +31,7 @@
 	// var_dump($details);
 
 // 左侧导航栏所需数据
-	$data = category($link);
+	$data = category($link,0,0);
 
 
 
@@ -70,7 +70,7 @@
 	$bmdata = bm($link,$classid);
 	// 路径导航函数breadcrumb集合在common.php中
 	
-	$cate = category($link,0);
+	$cate = category($link,0,0);
 
 // 使用模板文件编译html文件
 	display('list.html',compact('details','data','pid','publish','bmdata','breadcrumb'));

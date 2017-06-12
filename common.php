@@ -30,7 +30,7 @@
 		}</style>';
 	}
 	// 这个是导航条的函数
-	$pid = pid($link);
+	$pid = pid($link,0,0);
 
 
 //封装一个函数返回路径导航的相关数组，组合了导航条所需数组
@@ -146,11 +146,11 @@ $new = select($link,'title,addtime,authorid','bbs_details',"where classid = $cid
 // 酱作者和版主编号转化为用户名
 	/**
 	 * 酱数字id转化为用户名，可使用字符串
-	 * @param  str $name 用户id数字字符串
+	 * @param  str $uid 用户id数字字符串
 	 * @return array       一个包含uid=》用户名的数组
 	 */
-	function uidToname($name){
-		$nameArr = explode(',', $name);
+	function uidToname($uid){
+		$nameArr = explode(',', $uid);
 		$link = connect('localhost','root','','utf8','bbs');
 		foreach ($nameArr as $key => $value) {
 			$temp = select($link,'username','bbs_userdata',"where uid = $value");
@@ -161,7 +161,9 @@ $new = select($link,'title,addtime,authorid','bbs_details',"where classid = $cid
 		
 	}
 
-
+	$a = uidToname('1,2');
+	$b = implode(',', $a);
+	var_dump($b);
 
 
 

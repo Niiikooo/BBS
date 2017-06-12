@@ -14,9 +14,18 @@
 	 * @return true          [description]
 	 */
 	function display($tplname,$data=''){
-		// 合并文件具体路径
-		// echo $tplFullpath = finder($tplname);
+	// 合并文件具体路径
+		// 判断文档路径是前台还是后台
+		$dir = ltrim(strrchr(dirname(finder($tplname)),'/'),'/');
+		// var_dump($dir);
+		if ($dir == 'front') {
+			// 如果是前台页面：
 		$tplFullpath = rtrim(TPL_VIEW,'/').'/front/'.$tplname;
+		}else{
+			// 如果是后台页面
+		$tplFullpath = rtrim(TPL_VIEW,'/').'/admin/'.$tplname;
+		}
+		
 		// echo $tplFullpath;
 		// 如果文件不错在跳出
 		// var_dump(file_exists($tplFullpath));

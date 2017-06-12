@@ -5,6 +5,7 @@
 	// 网站所需常量
 	define('WEBNAME', $_SERVER['DOCUMENT_ROOT']);
 	define('TPL_VIEW', rtrim(WEBNAME,'/').'/views');
+	define('TPL_ADMIN', rtrim(WEBNAME,'/').'/admin');
 	define('TPL_CACHE', rtrim(WEBNAME,'/').'/caches');
 	// define('TPL_IMAGE', rtrim(WEBNAME,'/').'/public/img');
 	

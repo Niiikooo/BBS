@@ -96,8 +96,9 @@
 	}
 
 	// 删除
-	function delect($link,$sheet,$where){
-		$sql = 'delect from '.$sheet.'$where';
+	function delete($link,$sheet,$where){
+		$sql = 'delete from '.$sheet." ".$where;
+		echo $sql;
 		$result = mysqli_query($link,$sql);
 		if(!$result || !(mysqli_affected_rows($link))){
 
@@ -113,8 +114,8 @@
 		echo $sql;
 		$result = mysqli_query($link,$sql);
 		if(!$result || !(mysqli_affected_rows($link))){
-			echo ('修改失败 ！~');
-			exit();
+			// echo ('修改失败 ！~');
+			// exit();
 
 		}
 
@@ -143,7 +144,18 @@
 	 * @param  integer $cid  板块ID
 	 * @return 返回一个三维数组        [description]
 	 */
-	function category($link,$cid = 0){
+	function category($link,$cid = 0,$isdel = 0){
+		// 同时显示被删除和正常显示的部分
+		if ($isdel == 0) {
+			$isdel = 'and isdel =0';
+		}elseif ($isdel == 1) {
+			$isdel = 'and isdel =1';
+		}elseif ($isdel == 2){
+			// 同时显示
+			$isdel = '';
+		}
+		
+		// 
 		// 判断大板块id是否存在，不存在显示所有信息，存在则显示特定板块信息
 		// 这部分内容集合在pid函数中
 	
@@ -153,12 +165,14 @@
 		// 	$pid[$value['cid']] = $value['classname'];
 		// } 
 		// var_dump($cid);
-		$pid = pid($link,$cid);
+		
+		$pid = pid($link,$cid,$isdel);
+		var_dump($pid);
 		
 		// 子版块提取出来
 		foreach ($pid as $key => $value) {
 			$parentId[] = $value;
-			$data[]=select($link,'*','bbs_category',"where parentid=$key");
+			$data[]=select($link,'*','bbs_category',"where parentid=$key $isdel",'','order by orderby');
 		}
 
 		// 拼接
@@ -169,13 +183,24 @@
 	}
 
 
-	function pid($link,$cid=0){
+	function pid($link,$cid=0,$isdel=2){
+// 同时显示被删除和正常显示的部分
+		if ($isdel == 0) {
+			$isdel = 'and isdel =0';
+		}elseif ($isdel == 1) {
+			$isdel = 'and isdel =1';
+		}elseif ($isdel == 2){
+			// 同时显示
+			$isdel = '';
+		}
+var_dump($isdel);
 		if ($cid > 0) {
 		$where = "where cid = $cid";
 		}else{
-			$where = 'where parentid = 0';
+			$where = "where parentid = 0 $isdel";
+			var_dump($where);
 		}
-		$bigid = select($link,'cid,classname','bbs_category',$where);
+		$bigid = select($link,'cid,classname','bbs_category',$where,'','order by orderby');
 		// 将板块的cid和classname拼接为一个一维数组
 		foreach ($bigid as $key => $value) {
 			$pid[$value['cid']] = $value['classname'];

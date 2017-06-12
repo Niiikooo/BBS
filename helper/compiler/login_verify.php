@@ -2,7 +2,7 @@
 
 	include '../../common.php';
 	// include finder('compiler.php');
-
+	setcookie(session_name(),session_id(),time()+3600,'/');
 	// 判断是否登陆
 	
 		// echo '<style>.header_right_admin{
@@ -123,9 +123,9 @@
 	// var_dump($_SESSION);
 	// var_dump($_POST);
 	// var_dump($_SERVER);
-	var_dump($breadcrumb);
+	// var_dump($breadcrumb);
 	display('login_verify.html',compact('login','pid','refer','breadcrumb'));
-	var_dump($_SESSION); 
+	// var_dump($_SESSION); 
 
 
 

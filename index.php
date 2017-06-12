@@ -49,10 +49,13 @@
 	// 		$bmUser[] = bm($link,$v['cid']);
 
 	// 	}
-	// }
-	var_dump(session_name(),$_COOKIE,$_SESSION);
+	
+	// 站点信息
+	$site = ['siteName'  => '1','webName'  => '2','url'  => '3','info'  => '4'];
+	var_dump($site);
+
 	// 编译输出文件
-  	display('index.html',$data = compact('login','data','pid','breadcrumb','link'));
+  	display('index.html',$data = compact('login','data','pid','breadcrumb','link','site'));
 
 
 	// 将版块数据提起出来，从表bbs_category

@@ -1,0 +1,55 @@
+/*
+css for admin
+ */
+
+
+.cidMan span{
+	color: #cdcdcd;
+
+}
+.cidMan th:first-child{
+	width: 100px;
+}
+
+.cidMan th{
+	width: 300px;
+	text-align: center;
+}
+.cidMan input{
+	width: 159px;
+}
+.cidMan tr>td:first-child input{
+	width: 69px;
+}
+.classname{
+	width: 80px;
+	display: inline-block;
+}
+.cidMan input{
+	text-align: center;
+	margin: 0 auto;
+}
+.admin_sigline{
+	height: 20px;
+}
+.cidMan{
+	width: 961px;
+	margin :0 auto;
+}
+.check{
+	-webkit-appearance: radio;
+	text-align: left;
+}
+.cidMan .checkbox{
+
+	width: 66px;
+	text-align: left;
+}
+.cidMan .check{
+	width: 50px;
+	left: 30px;
+}
+.details_checkbox{
+	width: 15px;
+	height: 15px;
+}
