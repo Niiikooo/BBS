@@ -12,7 +12,7 @@
 	<div id="container">
 		{P display('header.html',compact('pid','breadcrumb'))}
 		
-		{P display($publish_check)}
+		{P display($publish_check,compact('tid'))}
 
 
 		{P display('footer.html')}

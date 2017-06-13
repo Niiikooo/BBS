@@ -2,8 +2,8 @@
 	include '../common.php';
 	
 
-	$details = select($link,'*','bbs_details','where first = 1 and isdel = 0');
-	// var_dump($details);
+	$details = select($link,'*','bbs_details','where first = 0 and isdel = 1');
+	var_dump($details);
 
 
 	// 处理板块信息
@@ -29,4 +29,4 @@
 		
 		}
 	// 
-	display('detailsManage.html',compact('pid','breadcrumb','details'));
+	display('replyRecycle.html',compact('pid','breadcrumb','details'));

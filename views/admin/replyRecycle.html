@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>修改确认</title>
+	<title>回复回收站</title>
 	<meta charset="utf-8">
 	
 	<!-- <link rel="stylesheet" type="text/css" href="../../public/css/base.css">  -->
@@ -13,24 +13,23 @@
 <body>
 	<div id="container">
 	<div class="cidMan">
-	<div class="cm_t"><h2>帖子管理</h2></div>
+	<div class="cm_t"><h2>回帖管理</h2></div>
 	<div>
-		<form action="/admin/detailsDel.php" method="post">
+		<form action="/admin/replyRec_verify.php" method="post">
 		<table class="cidMan">
 
 		<!-- 开始遍历 -->
 		
-			<tr><th></th><th>标题</th><th>板块</th><th class="checkbox">作者</th><th>回复</th><th>浏览</th><th>最后发表</th></tr>
+			<tr><th></th><th>标题</th><th>板块</th><th class="checkbox">作者</th><th>最后发表</th></tr>
 			<!-- 大板块开始 -->
 			{foreach $details as $key => $value}
 			<tr class="admin_sigline"></tr>
 			
 			<tr><td><input type="checkbox" class="form-control details_checkbox" value="{$value['id']}" name="id[]"></td>
-			<td>{$value['title']}</td>
+			<td>{$value['content']}</td>
 			<td>{$value['classname']}</td>
 			<td>{$value['authorName']}</td>
-			<td>{$value['replycount']}</td>
-			<td>{$value['hits']}</td>
+
 			<td>{$value['addtime']}</td></tr>
 				<tr class="admin_sigline"></tr>
 <tr class="admin_sigline"></tr>
@@ -47,7 +46,7 @@
 			<!-- 小板块结束 -->
 			{/foreach}
 			<tr class="admin_sigline"></tr>
-			<tr><td><input type="submit" class="btn btn-default" value="放入回收站"></td></tr>
+			<tr><td><input type="submit" class="btn btn-default sm" value="删除主题" name="del"></td><td><input type="submit" class="btn btn-default" value="恢复主题" name="recover"></td></tr>
 			
 			<!-- 结束遍历 -->
 		</table>

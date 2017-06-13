@@ -5,6 +5,7 @@
 	include '../../common.php';
 
 	$data = showpages($link,1,'bbs_tiezi',"where cid=1");
+	var_dump($data);
 	/**
 	 * 分页函数（直接纯属出html内容）
 	 * @param  连接 $link  [description]
@@ -12,9 +13,11 @@
 	 * @param  [string] $where 哪个板块下的内容
 	 * @return array        返回一个包含值的数组
 	 * 	 */
-	function showpages($link,$cid,$sheet,$where){
-		$data = select($link,'count(*) as count',$sheet,$where);
+	function showpages($link,$data){
+		// $data = select($link,'count(*) as count',$sheet,$where);
+
 		// 帖子总数
+		// 
 		global $count;
 		$count = $data[0]['count'];
 
@@ -55,8 +58,9 @@
 	}
 
 
-	
+		
 ?>
+
 
 <!-- 试验的分页效果 -->
 <html>

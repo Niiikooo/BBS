@@ -50,7 +50,6 @@ var_dump($_POST);
 		
 	}elseif (!preg_match('/\w[-\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\.)+[A-Za-z]{2,14}/', $email)) {
 		$verify = 'reg_failed.html';
-		echo 456546546;
 		// 判断邮箱格式
 		display('register_verify.html',compact('pid','breadcrumb','verify'));
 		exit();
@@ -63,7 +62,6 @@ var_dump($_POST);
 	var_dump($_POST);
 	// 判断两次密码是否输入正确
 	if ($pwd != $repwd) {
-		echo 234234234234;
 		$verify = 'reg_failed.html';
 		display('register_verify.html',compact('pid','breadcrumb','verify'));
 		var_dump($_POST);
@@ -76,18 +74,24 @@ var_dump($_POST);
 
 	$insert = insert($link,'bbs_userdata',$data);
 	if($insert){
+
 		$verify = 'reg_success.html';
-		echo '注册成功！<a href="index.php">返回</a>';
-		$_SESSION['group'] = '普通用户';
-		$_SESSION['rewardscore'] = 0;
+		// 存入session需要的数据
+		var_dump($username);
+		$User = select($link,'*','bbs_userdata',"where username = '$username'");
+		var_dump($User);
 		$_SESSION['username'] = $username;
-		$_SESSION['picture'] = '/public/img/logo.jpg';
+		$_SESSION['rewardscore'] = $User[0]['rewardscore'];
+		$_SESSION['group'] = $User[0]['group'];
+		$_SESSION['picture'] = $User[0]['picture'];
+		$_SESSION['uid'] = $User[0]['uid'];
+		$_SESSION['power'] = $User[0]['power'];
 
 	}else{
 		$verify = 'reg_failed.html';
 		echo '注册失败！请重新注册！<a href="index.php">返回</a>';
 	}
-	var_dump($verify);
+	// var_dump($verify);
 	display('register_verify.html',compact('pid','breadcrumb','verify'));
 
 ?>		

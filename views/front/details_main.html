@@ -9,10 +9,32 @@
 	<!-- 判断是否需要登录 -->
 		<a href="publish.php?cid={$table['publish']['classid']}"><button type="button" class="btn btn-default btn-lg">发帖<span class="glyphicon glyphicon-chevron-down down"></span></button></a>
 		<a href="#reply"><button type="button" class="btn btn-default btn-lg">回复</button></a>
+		<nav aria-label="Page navigation" id="page" style="float: right;margin-right:40px">
+  <ul class="pagination">
+    <li>
+      <a href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    {for $i=1;$i<$count+1;$i++}
+    <li><a href="/helper/compiler/list.php?cid={$newDetails[0]['classid']}&page={$i}">{$i}</a></li>
+    {/for}
+    <li>
+      <a href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
 	</div>
 	<!-- 表格开始 -->
 	<div class="details">
 		<table class="details_table">
+		<!-- 板块管理 -->
+		{if $power == 1 || (isset($_SESSION['username']) && $table['publish']['username'] == $_SESSION['username'])}
+		<tr id="del1"><td id="del2"><a href="/helper/compiler/detailOperation.php?del={$table['publish']['id']}">删除主题</a><span class="pipe"></span><a href="/helper/compiler/detailOperation.php?istop={$table['publish']['id']}">置顶</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/helper/compiler/detailOperation.php?elite={$table['publish']['id']}">精华</a></td></tr>
+		{/if}
+		<!-- 管理结束 -->
 			<tr><th class="d_t_view">查看：{$table['publish']['hits']}&nbsp;&nbsp;&nbsp;回复：{$table['publish']['replycount']}</th><th class="title">{$table['publish']['title']}</th></tr>
 			<tr><td class="d_t_view">{$table['publish']['username']}</div></td><td>
 				<!-- <div class="sigline details_sigline"></div> -->
@@ -39,7 +61,12 @@
 					<div class="d_dl d_g"><img src="/public/img/new_pm.gif" alt="">发消息</div></div>
 					
 				</div>
-			</td><td class="d_content">{$table['publish']['content']}</td></tr>
+			</td><td class="d_content">
+			<div>
+			{$payment}
+			</td>
+			</div>
+			</tr>
 			<tr><td></td><td></td></tr>
 			<div class="clr"></div>
 

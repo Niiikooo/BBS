@@ -14,6 +14,7 @@
 	}
 	
 	$first = 1;
+	$title = $_POST['title'];
 	$authorid = $_SESSION['uid'];
 	$addtime = time();
 	$addip = $_SERVER['REMOTE_ADDR'];
@@ -22,7 +23,8 @@
 	}
 	$addip = ip2long($addip);
 	$classid = $_GET['cid'];
-	$data = compact('tid','content','first','authorid','addtime','addip','classid');
+	$rate = $_POST['price'];
+	$data = compact('tid','content','first','authorid','addtime','addip','classid','title','rate');
 	if ($_SESSION['qd'] != $_POST['qd']) {
 		$publish_check = 'publish_error.html';
 	}else{
@@ -48,10 +50,11 @@
 	
 	var_dump($breadcrumb);
 	var_dump($_SESSION);
-
+	$tid = select($link,'id','bbs_details',"",'','order by addtime desc','limit 0,1');
+	$tid = $tid[0]['id'];
 
 // 编译
-	display('publish_verify.html',compact('pid','breadcrumb','publish_check'));
+	display('publish_verify.html',compact('pid','breadcrumb','publish_check','tid'));
 
 
 	

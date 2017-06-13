@@ -59,6 +59,7 @@ css for details_main
 .bor_none{
 	border-top: none;
 	background: #E5EDF2;
+	vertical-align: top;
 }
 .elevator{
 	background: url(/public/img/fj_btn.png) no-repeat;
@@ -137,7 +138,15 @@ css for details_main
 	font-size: 23px;
 	padding-left:10px;
 }
-
+.details_table a {
+	color: #369;
+}
+.details .details_table #del2{
+	border : none;
+}
+#del1{
+	border: none;
+}
 /*分页样式*/
 .page button{
 	margin:10px 0px;

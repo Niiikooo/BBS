@@ -7,8 +7,9 @@
 	// update($link,'bbs_userdata',"username = 'ff'",)
 	// var_dump($tid);
 	// 提取发帖
-	$details = select($link,'*','bbs_details,bbs_userdata',"where first=1 and id=$tid");
+	$details = select($link,'*','bbs_details as a,bbs_userdata as b',"where a.first=1 and a.id=$tid and a.authorid = b.uid",'','order by istop');
 	$details = $details[0];
+	// var_dump($details['username']);die;
 	$reply = select($link,'*','bbs_details as a,bbs_userdata as b',"where a.first=0 and a.tid=$tid and a.authorid = b.uid",'','order by id asc');
 	// var_dump($reply);
 
@@ -61,9 +62,51 @@
 		$reply[$key]['addtime'] = addtime($value['addtime']);
 	}
 	}
+	// var_dump($);
 	$table['reply'] = $reply;
 	// var_dump($table);
-
-	// 发帖回复按钮能不能恩
+	// var_dump($_SESSION);
+	// 
+	// 如果是金币帖，则加上相关内容
 	
-	display('details.html',compact('pid','breadcrumb','table','user'));
+
+	if ($table['publish']['rate'] == 0) {
+		// 不是金币帖
+		$payment = $table['publish']['content'];
+	}else{
+		// 游客用户也能查看金币帖
+		if (!isset($_SESSION['uid'])) {
+			$payment = "<div><img src='/public/img/locked.gif' alt=''>付费主题，价格：<a href='/helper/compiler/detailOperation.php?pay={$table['publish']['id']}&rate={$table['publish']['rate']}' style='color:#f26c4f'>{$table['publish']['rate']}金钱</a></div>";
+		}else{
+			// 当用户登录时
+			// 如果是自己的帖子
+			if ($_SESSION['username'] == $table['publish']['username']) {
+				$payment = $table['publish']['content'];
+			}else{
+			$ispayed = select($link,'uid','bbs_order',"where uid = ".$_SESSION['uid']." and tid = ".$table['publish']['id']);
+			// 判断是否购买
+			if ($ispayed) {
+				// 购买了
+				$payment = $table['publish']['content'];
+				
+			}else{
+				// 没购买
+				$payment = "<div><img src='/public/img/locked.gif' alt=''>付费主题，价格：<a href='/helper/compiler/detailOperation.php?pay={$table['publish']['id']}&rate={$table['publish']['rate']}' style='color:#f26c4f'>{$table['publish']['rate']}金钱</a></div>";
+			}
+		}
+
+		}
+		
+		
+		
+	}
+
+	// 管理员操作按钮
+	if (isset($_SESSION['power']) && $_SESSION['power'] != 0) {
+		$power = 1;
+	}else{
+		$power = 0;
+	}
+	// 
+	// 发帖回复按钮能不能恩
+	display('details.html',compact('pid','breadcrumb','table','user','payment','power'));

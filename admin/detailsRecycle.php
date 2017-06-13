@@ -2,7 +2,7 @@
 	include '../common.php';
 	
 
-	$details = select($link,'*','bbs_details','where first = 1 and isdel = 0');
+	$details = select($link,'*','bbs_details','where first = 1 and isdel = 1');
 	// var_dump($details);
 
 
@@ -29,4 +29,4 @@
 		
 		}
 	// 
-	display('detailsManage.html',compact('pid','breadcrumb','details'));
+	display('detailsRecycle.html',compact('pid','breadcrumb','details'));

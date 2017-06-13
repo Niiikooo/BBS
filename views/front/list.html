@@ -54,6 +54,27 @@
 		<div>
 			<a href="{$publish}?cid={$_GET['cid']}"><button type="button" class="btn btn-default btn-lg">发帖<span class="glyphicon glyphicon-chevron-down down"></span></button></a>
 			<button type="button" class="btn btn-default btn-lg">返回</button>
+
+	<!-- 分页开始 -->
+<nav aria-label="Page navigation" id="page" style="float: right;margin-right:40px">
+  <ul class="pagination">
+    <li>
+      <a href="/helper/compiler/list.php?cid={$newDetails[0]['classid']}&page={$prev}" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    {for $i=1;$i<$count+1;$i++}
+    <li><a href="/helper/compiler/list.php?cid={$newDetails[0]['classid']}&page={$i}">{$i}</a></li>
+    {/for}
+    <li>
+      <a href="/helper/compiler/list.php?cid={$newDetails[0]['classid']}&page={$next}" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+<!-- 分页结束 -->
+			<!-- <button type="button" class="btn btn-default btn-lg">返回</button> -->
 		</div>
 		<div class="clr" style="clear:both"></div>
 			 	<!-- 右侧上部结束 -->
@@ -66,16 +87,25 @@
 				<tr><th class="l_t">筛选：全部<span class="pipe">|</span>精华</th><th class="l_t">作者</th><th class="l_t">回复/查看</th><th class="l_t">最后发表</th></tr>
 				<tr></tr>
 				<!-- 主体 -->
-				{if $details == null}
-					<!-- <tr><td class="l_t"></td><td class="l_t"></td><td class="l_t"></td><td class="l_t"></td></tr> -->
+				{if $newDetails == null}
+		
 				{else}
 
-				{foreach $details as $key => $value}
-				<tr><td class="l_t"><a href="/helper/compiler/details.php?tid={$value['id']}">{$value['title']}</a></td><td class="l_t">{$value['username']}</td><td class="l_t">{$value['replycount']}/{$value['hits']}</td><td class="l_t"></td></tr>
+				{foreach $newDetails as $key => $value}
+				<tr><td class="l_t"><a href="/helper/compiler/details.php?tid={$value['id']}">{$value['title']}</a>
+			<!-- 如果是精华帖加上标志 -->
+				{if $value['elite'] == 1}
+				<img src="/public/img/digest_1.gif">
+				{/if}
+				<!-- 结束 -->
+			<!-- 如果有售价标上价格 -->
+				{if $value['rate']!=0}
+				- [售价 {$value['rate']} 金钱]
+				{/if}
+			<!-- 结束 -->
+				</td><td class="l_t">{$value['username']}</td><td class="l_t">{$value['replycount']}/{$value['hits']}</td><td class="l_t">{$value['lastpost']}</td></tr>
 				{/foreach}{/if}
-				<!-- <tr><td class="l_t">asdf</td><td class="l_t">asdf</td><td class="l_t">asdf</td><td class="l_t">asdf</td></tr>
-				<tr><td class="l_t">asdf</td><td class="l_t">asdf</td><td class="l_t">asdf</td><td class="l_t">asdf</td></tr>
-				<tr><td class="l_t">asdf</td><td class="l_t">asdf</td><td class="l_t">asdf</td><td class="l_t">asdf</td></tr> -->
+			
 			</table>
 		<div class="clr" style="clear: both"></div>
 		
@@ -83,6 +113,25 @@
 		<div>
 			<a href="{$publish}?cid={$_GET['cid']}"><button type="button" class="btn btn-default btn-lg">发帖<span class="glyphicon glyphicon-chevron-down down"></span></button></a>
 			<button type="button" class="btn btn-default btn-lg">返回</button>
+			<!-- 分页开始 -->
+<nav aria-label="Page navigation" id="page" style="float: right;margin-right:40px">
+  <ul class="pagination">
+    <li>
+      <a href="/helper/compiler/list.php?cid={$newDetails[0]['classid']}&page={$prev}" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    {for $i=1;$i<$count+1;$i++}
+    <li><a href="/helper/compiler/list.php?cid={$newDetails[0]['classid']}&page={$i}">{$i}</a></li>
+    {/for}
+    <li>
+      <a href="/helper/compiler/list.php?cid={$newDetails[0]['classid']}&page={$next}" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+			<!-- 分页结束 -->
 	 	<!-- 右侧下部结束 -->
 	 <!-- 右侧结束 -->
 		</div>

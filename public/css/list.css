@@ -111,3 +111,6 @@
 	left:5px;
 	font-size: 12px;
 }
+.list_r #page ul{
+	float : right;
+}

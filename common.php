@@ -150,7 +150,12 @@ $new = select($link,'title,addtime,authorid','bbs_details',"where classid = $cid
 	 * @return array       一个包含uid=》用户名的数组
 	 */
 	function uidToname($uid){
-		$nameArr = explode(',', $uid);
+		if (is_array($uid)) {
+			$nameArr = explode(',', $uid);
+		}else{
+			$nameArr = [$uid]; 
+		}
+		
 		$link = connect('localhost','root','','utf8','bbs');
 		foreach ($nameArr as $key => $value) {
 			$temp = select($link,'username','bbs_userdata',"where uid = $value");
@@ -161,9 +166,7 @@ $new = select($link,'title,addtime,authorid','bbs_details',"where classid = $cid
 		
 	}
 
-	$a = uidToname('1,2');
-	$b = implode(',', $a);
-	var_dump($b);
+
 
 
 

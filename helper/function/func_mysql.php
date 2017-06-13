@@ -30,7 +30,7 @@
 			return false;
 		}
 		$row = mysqli_fetch_assoc($result);
-		$data = ['password' => $row['password'],'rewardscore' => $row['rewardscore'],'group' => $row['group'],'picture' => $row['picture'],'uid' => $row['uid'],'allowlogin' => $row['allowlogin'],'lasttime' => $row['lasttime']];
+		$data = ['password' => $row['password'],'rewardscore' => $row['rewardscore'],'group' => $row['group'],'picture' => $row['picture'],'uid' => $row['uid'],'allowlogin' => $row['allowlogin'],'lasttime' => $row['lasttime'],'power' => $row['power']];
 		return $data;
 	}
 
@@ -76,16 +76,22 @@
 	 * @return [type]        bool
 	 */
 	function insert($link,$sheet,$data){
-		foreach ($data as $key => $value) {
+		if (is_array($data)) {
+			foreach ($data as $key => $value) {
 			$k[] = $key;
 			$v[] = $value; 
 		}
 		$fields = implode(',', $k);
 		$values = parseStr($v);
 		$values = implode(',',$values);
-		var_dump($values,$fields);
 		$sql = "insert into ".$sheet.' ('.$fields.')'.' values('.$values.'); ';
 		echo $sql;
+		}else{
+			$sql = "insert into ".$sheet.$data;
+			echo $sql;
+		}
+		
+		
 		$result = mysqli_query($link,$sql);
 		if(!$result || !(mysqli_affected_rows($link))){
 			return false;
@@ -167,7 +173,7 @@
 		// var_dump($cid);
 		
 		$pid = pid($link,$cid,$isdel);
-		var_dump($pid);
+		// var_dump($pid);
 		
 		// 子版块提取出来
 		foreach ($pid as $key => $value) {

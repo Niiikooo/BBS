@@ -1,6 +1,7 @@
 <?php
 // 头文件
 	include '../../common.php';
+	include  finder('details_func.php');
 // 	include finder('compiler.php');
 // 	session_start();
 // // 这个是导航条的函数
@@ -26,14 +27,62 @@
 	$classid = $_GET['cid'];
 	// var_dump($classid);
 // 根据小版块编号查询帖子数据
-	$details = select($link,'*','bbs_details as a,bbs_userdata as b',"where a.classid=$classid and b.uid=a.authorid and first = 1");
+	$details = select($link,'*','bbs_details as a,bbs_userdata as b',"where a.classid=$classid and b.uid=a.authorid and first = 1 and isdel = 0",'','order by istop desc,addtime desc ');
+	// var_dump($details);
+	// 处理最后发表回复时间
+	// 判断是否为空
+	if ($details) {
+		foreach ($details as $key => $value) {
+		$time = select($link,'addtime','bbs_details',"where tid = ".$value['id']);
+		$details[$key]['lastpost'] = addtime($time[0]['addtime']);
+		}
+	// var_dump($details);
+	}
+	// var_dump($details);
+	// details帖子内容，对它处理分页
+	// 如果没有$_GET['page']
+	if (!isset($_GET['page'])) {
+		$page = 0;
+	}else{
+		$page = $_GET['page'];
+	}
+	// 每页个数
+	$num = 10;
+	// 总页数
+	$count = ceil(count($details)/$num);
+
+	// 酱所有的数据chunk
+	if ($details) {
+		$Det = array_chunk($details, $num);
+	
+	
+	// var_dump($Det);
+	// 如果当前页不存在
+	if ($page == 0) {
+		$newDetails = $details;
+	}else{
+		$newDetails = $Det[$page - 1];
+	}
+	var_dump($newDetails);
+	$prev = $page -1;
+	if ($prev <1) {
+		$prev = 1;
+	}
+	$next = $page + 1;
+	if ($next > $count) {
+		$next = $count;
+	}
+	}
+	
+	// var_dump($_SERVER);
+	
 
 	// var_dump($details);
 
 // 左侧导航栏所需数据
 	$data = category($link,0,0);
 
-
+	// var_dump($breadcrumb);
 
 // $classid = $_GET['cid'];
 
@@ -72,5 +121,8 @@
 	
 	$cate = category($link,0,0);
 
+	// 版主权限部分
+	// 
+
 // 使用模板文件编译html文件
-	display('list.html',compact('details','data','pid','publish','bmdata','breadcrumb'));
+	display('list.html',compact('newDetails','data','pid','publish','bmdata','breadcrumb','count','prev','next'));

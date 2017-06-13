@@ -68,6 +68,7 @@
 		$_SESSION['group'] = $pwd_database['group'];
 		$_SESSION['picture'] = $pwd_database['picture'];
 		$_SESSION['uid'] = $pwd_database['uid'];
+		$_SESSION['power'] = $pwd_database['power'];
 		update($link,'bbs_userdata',"logintimes = 0,lasttime = ".time(),"where username = '$username'");
 		}
 		}
