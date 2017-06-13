@@ -72,6 +72,10 @@
 	if ($next > $count) {
 		$next = $count;
 	}
+	}else{
+		$newDetails = null;
+		$prev = 1;
+		$next = 1;
 	}
 	
 	// var_dump($_SERVER);
