@@ -63,7 +63,7 @@
 	}else{
 		$newDetails = $Det[$page - 1];
 	}
-	var_dump($newDetails);
+	// var_dump($newDetails);
 	$prev = $page -1;
 	if ($prev <1) {
 		$prev = 1;
@@ -73,6 +73,7 @@
 		$next = $count;
 	}
 	}else{
+		// 当没有帖子的时候
 		$newDetails = null;
 		$prev = 1;
 		$next = 1;

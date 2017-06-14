@@ -69,6 +69,7 @@
 	// 
 	// 如果是金币帖，则加上相关内容
 	
+	
 
 	if ($table['publish']['rate'] == 0) {
 		// 不是金币帖
@@ -108,5 +109,69 @@
 		$power = 0;
 	}
 	// 
+	// 
+	// 分页处理
+	if (!isset($_GET['page'])) {
+		$page = 0;
+	}else{
+		$page = $_GET['page'];
+	}
+	// 每页个数
+	$num = 10;
+	// 总个数
+	$totalNum = count($table['reply']) + 1;
+	// 总页数
+	$count = ceil((count($table['reply'])+1)/$num);
+
+	// 酱所有的数据从数组中分zu
+	// if ($) {
+		// 第一页单独处理
+		var_dump($table);
+		if ($page == 1 || $page == 0) {
+			if ($table['reply']) {
+				$table['reply'] = array_slice($table['reply'], 0,9,true);
+			}
+
+			
+		}else{
+			$offset = 10*($page-1);
+
+			if (!$table['reply']) {
+				$table['reply'] == null;
+			}else{if (($offset +$num) > $totalNum) {
+
+				$table['reply'] = array_slice($table['reply'], $offset,$num,true);
+			}else{
+
+
+			$table['reply'] = array_slice($table['reply'], 10*$page-1,10);
+			}
+			}
+			
+			
+		}
+		
+	
+	
+	// var_dump($Det);
+	// 如果当前页不存在
+
+	// var_dump($newDetails);
+	$prev = $page -1;
+	if ($prev <1) {
+		$prev = 1;
+	}
+	$next = $page + 1;
+	if ($next > $count) {
+		$next = $count;
+	}
+	// var_dump($table);
+	// }else{
+	// 	// 当没有帖子的时候
+	// 	$newDetails = null;
+	// 	$prev = 1;
+	// 	$next = 1;
+	// }
+	// var_dump($table);
 	// 发帖回复按钮能不能恩
-	display('details.html',compact('pid','breadcrumb','table','user','payment','power'));
+	display('details.html',compact('pid','breadcrumb','table','user','payment','power','count','prev','next','page'));

@@ -26,14 +26,15 @@
 	 // var_dump($data);
 	// var_dump($data);
 	// 这个是导航条的函数
-	$pid = pid($link);
+	$pid = pid($link,0,0);
+	// var_dump($pid,0,0);
 	// 帖子总数等信息汇总
 	$tNum = select($link,'count(id) as count ','bbs_details','where isdel=0');
 	$_SESSION['tNum'] = $tNum[0]['count'];
 
 	// 会员总数汇总
 	$uNum = select($link,'count(uid) as count','bbs_userdata');
-	$_SESSION['uNum'] = $tNum[0]['count'];
+	$_SESSION['uNum'] = $uNum[0]['count'];
 	// 
 	// 新会员查询
 	$newUser = select($link,'regtime,username','bbs_userdata','','order by regtime desc');
@@ -51,12 +52,12 @@
 	// 	}
 	
 	// 站点信息
-	$site = ['siteName'  => '1','webName'  => '2','url'  => '3','info'  => '4'];
+	$site = ['siteName' => '论坛','webName' => '你的论坛','url' => 'www.rain.com','info' => '京ICP备 89273号'];
 	var_dump($site);
+	var_dump($_SESSION);
 
 	// 编译输出文件
   	display('index.html',$data = compact('login','data','pid','breadcrumb','link','site'));
-
 
 	// 将版块数据提起出来，从表bbs_category
 

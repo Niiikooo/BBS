@@ -9,39 +9,48 @@
 	<!-- 判断是否需要登录 -->
 		<a href="publish.php?cid={$table['publish']['classid']}"><button type="button" class="btn btn-default btn-lg">发帖<span class="glyphicon glyphicon-chevron-down down"></span></button></a>
 		<a href="#reply"><button type="button" class="btn btn-default btn-lg">回复</button></a>
-		<nav aria-label="Page navigation" id="page" style="float: right;margin-right:40px">
+		<!-- 分页 -->
+<nav aria-label="Page navigation" id="page" style="float: right;margin-right:40px">
   <ul class="pagination">
     <li>
-      <a href="#" aria-label="Previous">
+      <a href="/helper/compiler/details.php?tid={$table['publish']['id']}&page={$prev}" aria-label="Previous">
         <span aria-hidden="true">&laquo;</span>
       </a>
     </li>
     {for $i=1;$i<$count+1;$i++}
-    <li><a href="/helper/compiler/list.php?cid={$newDetails[0]['classid']}&page={$i}">{$i}</a></li>
+    <li><a href="/helper/compiler/details.php?tid={$table['publish']['id']}&page={$i}">{$i}</a></li>
     {/for}
     <li>
-      <a href="#" aria-label="Next">
+      <a href="/helper/compiler/details.php?tid={$table['publish']['id']}&page={$next}" aria-label="Next">
         <span aria-hidden="true">&raquo;</span>
       </a>
     </li>
   </ul>
 </nav>
+<!-- 分页结束 -->
 	</div>
 	<!-- 表格开始 -->
 	<div class="details">
 		<table class="details_table">
+	<!-- 如果不是首页 -->
+	{if $page > 1}
+	{else}
 		<!-- 板块管理 -->
-		{if $power == 1 || (isset($_SESSION['username']) && $table['publish']['username'] == $_SESSION['username'])}
-		<tr id="del1"><td id="del2"><a href="/helper/compiler/detailOperation.php?del={$table['publish']['id']}">删除主题</a><span class="pipe"></span><a href="/helper/compiler/detailOperation.php?istop={$table['publish']['id']}">置顶</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/helper/compiler/detailOperation.php?elite={$table['publish']['id']}">精华</a></td></tr>
+		{if $power = -1 || (isset($_SESSION['username']) && $table['publish']['username'] == $_SESSION['username']) || (isset($_SESSION['power']) && $table['publish']['classid'] == $_SESSION['power'])}
+		<tr id="del1"><td id="del2"><a href="/helper/compiler/detailOperation.php?del={$table['publish']['id']}">删除主题</a>&nbsp;&nbsp;<a href="/helper/compiler/detailOperation.php?istop={$table['publish']['id']}">置顶</a>&nbsp;&nbsp;<a href="/helper/compiler/detailOperation.php?elite={$table['publish']['id']}">精华</a><a href="/helper/compiler/detailOperation.php?ishot={$table['publish']['id']}">高亮</a></td></tr>
 		{/if}
 		<!-- 管理结束 -->
 			<tr><th class="d_t_view">查看：{$table['publish']['hits']}&nbsp;&nbsp;&nbsp;回复：{$table['publish']['replycount']}</th><th class="title">{$table['publish']['title']}</th></tr>
-			<tr><td class="d_t_view">{$table['publish']['username']}</div></td><td>
+			<tr id="details_1"><td class="d_t_view">{$table['publish']['username']}</div></td><td>
 				<!-- <div class="sigline details_sigline"></div> -->
 				<div class="fl">
 				&nbsp;&nbsp;&nbsp;发表于：{$table['publish']['addtime']}
-				</div>
-				<div class="fr">电梯直达：&nbsp;&nbsp;&nbsp;<input type="text" name="" class="form-control">&nbsp;&nbsp;<button type="submit" class="btn btn-default elevator"></button></div>
+				</div><form action="/helper/compiler/jump.php" method="post">
+				<div class="fr">楼主&nbsp;&nbsp;电梯直达：&nbsp;&nbsp;&nbsp;
+				
+				<input type="text" name="elevator" class="form-control">&nbsp;&nbsp;<a href="helper/compiler/jump.php">
+				<input type="hidden" name="tid" value="{$table['publish']['id']}">
+				<input type="submit" class="btn btn-default elevator" value="" style="width:20px"></form></a></div>
 				<div class="clr"></div>
 			</td></tr>
 			<tr><td class="bor_none">
@@ -69,18 +78,33 @@
 			</tr>
 			<tr><td></td><td></td></tr>
 			<div class="clr"></div>
+	{/if}
 
 			<!-- 回复部分开始 -->
 			{if $table['reply']==false}
 			{else}
 			
 			{foreach $table['reply'] as $key => $value}
-			<tr><td class="d_t_view">{$value['username']}</div></td><td>
+			<tr style="width: 961px;" id="details_{$key+2}"><td class="d_t_view">{$value['username']}</td><td>
 				<!-- <div class="sigline details_sigline"></div> -->
 				<div class="fl">&nbsp;&nbsp;&nbsp;
 				发表于：{$value['addtime']}
 				</div>
-				<div class="fr">电梯直达：&nbsp;&nbsp;&nbsp;<input type="text" name="" class="form-control">&nbsp;&nbsp;<button type="submit" class="btn btn-default elevator"></button></div>
+				<form action="/helper/compiler/jump.php" method="post">
+				<div class="fr">
+				<!-- 沙发 -->
+				{if $key == 0}
+				沙发
+				{elseif $key == 1}
+				板凳
+				{elseif $key == 2}
+				地下室
+				{/if}
+				<!-- /沙发 -->
+
+				&nbsp;&nbsp;电梯直达：&nbsp;&nbsp;&nbsp;<input type="text" name="elevator" class="form-control">&nbsp;&nbsp;
+				<input type="hidden" name="tid" value="{$table['publish']['id']}">
+				<input type="submit" class="btn btn-default elevator" value="" style="width:20px"></div></td></tr></form>
 				<div class="clr"></div>
 			</td></tr>
 			<tr><td class="bor_none">
@@ -114,8 +138,30 @@
 	<div class="page">
 		<a href="publish.php?cid={$table['publish']['classid']}"><button type="button" class="btn btn-default btn-lg">发帖<span class="glyphicon glyphicon-chevron-down down"></span></button></a>
 		<a href="#reply"><button type="button" class="btn btn-default btn-lg">回复</button></a>
+				<!-- 分页 -->
+<nav aria-label="Page navigation" id="page" style="float: right;margin-right:40px">
+  <ul class="pagination">
+    <li>
+      <a href="/helper/compiler/details.php?tid={$table['publish']['id']}&page={$prev}" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    {for $i=1;$i<$count+1;$i++}
+    <li><a href="/helper/compiler/details.php?tid={$table['publish']['id']}&page={$i}">{$i}</a></li>
+    {/for}
+    <li>
+      <a href="/helper/compiler/details.php?tid={$table['publish']['id']}&page={$next}" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+<div class="clr"></div>
+<!-- 分页结束 -->
 	</div>
+
 </div>
+<div class="clr"></div>
 <div class="reply" id="reply">
 	<div class="r_t">
 		<img src="" alt="头像">

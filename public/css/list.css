@@ -114,3 +114,10 @@
 .list_r #page ul{
 	float : right;
 }
+
+#ishot a {
+	color: red;
+}
+#ishot{
+	color: red;
+}

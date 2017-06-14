@@ -32,6 +32,8 @@
 	$a = insert($link,'bbs_details',$data);
 	var_dump($a);
 	if ($a) {
+		// 发帖积分增加
+		echo update($link,'bbs_userdata','rewardscore=rewardscore +20',"where uid = ".$authorid);
 		$publish_check = 'publish_success.html';
 	}else{
 		$publish_check = 'publish_error.html';

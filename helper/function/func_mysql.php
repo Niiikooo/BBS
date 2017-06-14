@@ -119,10 +119,13 @@
 		$sql = 'update '.$sheet.' set '.$data.' '.$where;
 		echo $sql;
 		$result = mysqli_query($link,$sql);
+		var_dump($result);
 		if(!$result || !(mysqli_affected_rows($link))){
 			// echo ('修改失败 ！~');
 			// exit();
-
+			return false;
+		}else{
+			return true;
 		}
 
 	}
@@ -199,7 +202,7 @@
 			// 同时显示
 			$isdel = '';
 		}
-var_dump($isdel);
+// var_dump($isdel);
 		if ($cid > 0) {
 		$where = "where cid = $cid";
 		}else{

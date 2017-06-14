@@ -29,11 +29,11 @@
 		
 				<!-- 已登录模块开始 -->
 				<div class="header_right_admin">
-				<img src="{echo TPL_IMG}logo.jpg" style="float: right">
+				<a href="/helper/compiler/home.php"><img src="{$_SESSION['picture']}" style="float: right"></a>
 				<ul class="admin_l" style="float:right">
 					<li style="width: 200px;text-align:right">{$_SESSION['username']}<span class="pipe">|</span></li>
 					<li><button>签到</button><span class="pipe">|</span></li>
-					<li>我的<span class="pipe">|</span></li>
+					<li><a href="/helper/compiler/home.php">我的</a><span class="pipe">|</span></li>
 					<li>设置<span class="pipe">|</span></li>
 					<li>消息<span class="pipe">|</span></li>
 					<li>提醒<span class="pipe">|</span></li>
@@ -41,6 +41,9 @@
 
 					<div class="clr"></div>
 				<ul class="admin_r">
+				{if $_SESSION['power'] == -1}
+					<li>管理中心<span class="pipe">|</span></li>
+				{/if}
 					<li>积分：{$_SESSION['rewardscore']}<span class="pipe">|</span></li>
 					<li>用户组：{$_SESSION['group']}</li>
 					</ul>
@@ -70,7 +73,7 @@
 			<div class="clr"></div>
 			<div class="search_down">
 				
-					<form action="serach.php" method="get">
+					<form action="/helper/compiler/search.php" method="post">
 						<div><a href="#"><div class="glass"></div></a></div>
 						<div class="glass_search"><input type="text" name="search" class="search_input"></div>
 						<div class="sh">
@@ -85,6 +88,7 @@
 						<div class="clr"></div>
 					</form>
 			<!-- 导航条开始 -->
+			<div class="clr"></div>
 					<div class="path">
 						<ol class="breadcrumb" >
 							<li class="home"><a href=""></a></li>
@@ -106,10 +110,10 @@
 							{/if}			
 							<li><a href="/index.php?cid={$key}">{$value}</a></li>
 							{/foreach}
+							<div class="clr"></div>
 						</ol>
-<!-- 						<div class="clr"></div>
- -->						
 						<div class="clr"></div>
+
 					</div>
 			<!-- 导航条结束 -->
 				

@@ -1,45 +1,115 @@
-<div id="search">
-			<div class="search_top">
-				<ul>
-					<li style="" class="search_sy">首页</li>
-					<li class="dn"></li>
-					<li style="" class="search_js">PHP技术交流</li>
-					<li class="dn"></li>
-					<li style="" class="search_cx">程序人生</li>
-				</ul>
-			</div>
-			<div class="search_down">
-				
-					<form action="serach.php" method="get">
-						<div class="glass"></div>
-						<div class="glass_search"><input type="text" name="search" class="search_input"></div>
-						<div class="sh">
-							<button type="submit">搜索</button>
-						</div>
-						<ul style="" class="search_ul">
-							<li>热搜：</li>
-							<li><a href="#">活动</a></li>
-							<li><a href="#">交友</a></li>
-							<li><a href="#">教程</a></li><div class="clr"></div>
-						</ul>
-						<div class="clr"></div>
-					</form>
-					<div class="path">
-						<div class="home"></div>
-						<ul class="path_a">
-							<li id="icon"></li>
-							<li><a href="#">论坛</a></li>
-						</ul>
-						<div class="clr"></div>
-						<ul class="chart">
-							<li></li>
-							<li>帖子<span class="pipe">|</span></li>
-							<li>会员<span class="pipe">|</span></li>
-							<li>欢迎新会员</li>
-						</ul>
-						<div class="clr"></div>
-					</div>
-				
-			</div>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>搜索</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="../../public/css/bootstrap.min.css"> 
+	<link rel="stylesheet" type="text/css" href="../../public/css/base.css"> 
+	<link rel="stylesheet" type="text/css" href="../../public/css/index.css">
+	<link rel="stylesheet" type="text/css" href="../../public/css/list.css">
+</head>
+<body>
+	<div id="container">
+		{P display('header.html',compact('pid','breadcrumb'))}
+
+		<div id="main" style="margin:0 auto">
+		<div class="list_r" style="float:left;width: 960px">
+	 	<!-- 右侧上部开始 -->
+	<div class="clr"></div>
+		<div>
+			
+			<button type="button" class="btn btn-default btn-lg">返回</button>
+
+	<!-- 分页开始 -->
+<nav aria-label="Page navigation" id="page" style="float: right;margin-right:40px">
+  <ul class="pagination">
+    <li>
+      <a href="/helper/compiler/list.php?cid={$newDetails[0]['classid']}&page={$prev}" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    {for $i=1;$i<$count+1;$i++}
+    <li><a href="/helper/compiler/list.php?cid={$newDetails[0]['classid']}&page={$i}">{$i}</a></li>
+    {/for}
+    <li>
+      <a href="/helper/compiler/list.php?cid={$newDetails[0]['classid']}&page={$next}" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+<!-- 分页结束 -->
+			<!-- <button type="button" class="btn btn-default btn-lg">返回</button> -->
 		</div>
-		<div class="clr"></div>
+		<div class="clr" style="clear:both"></div>
+			 	<!-- 右侧上部结束 -->
+
+	 	<!-- 右侧下部开始 -->
+		<div class="panel panel-default list_r_b">
+			<table class="table list_table">
+			<!-- 表头 -->
+				<tr><th class="l_t">标题</th></tr>
+				<tr></tr>
+			
+				<!-- 主体 -->
+				{if $newDetails == null}
+				<tr style="border: none"><td>没有搜索结果，请重新搜索</td></tr>
+				{else}
+
+				{foreach $newDetails as $key => $value}
+				<tr style="font-size: 20px;"><td class="l_t"><a href="/helper/compiler/details.php?tid={$value['id']}">{$value['title']}</a>
+			<!-- 如果是精华帖加上标志 -->
+				{if $value['elite'] == 1}
+				<img src="/public/img/digest_1.gif">
+				{/if}
+				<!-- 结束 -->
+			<!-- 如果有售价标上价格 -->
+				{if $value['rate']!=0}
+				- [售价 {$value['rate']} 金钱]
+				{/if}
+			<!-- 结束 -->
+				</td></tr>
+				<tr><td style="text-align:left;font-size: 12px;border-top:none">{$value['content']}</td></tr>
+				<tr style="height: 20px;"></tr>
+				{/foreach}{/if}
+			
+			</table>
+		<div class="clr" style="clear: both"></div>
+		
+		</div>
+		<div>
+			
+			<button type="button" class="btn btn-default btn-lg">返回</button>
+			<!-- 分页开始 -->
+<nav aria-label="Page navigation" id="page" style="float: right;margin-right:40px">
+  <ul class="pagination">
+    <li>
+      <a href="/helper/compiler/list.php?cid={$newDetails[0]['classid']}&page={$prev}" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    {for $i=1;$i<$count+1;$i++}
+    <li><a href="/helper/compiler/list.php?cid={$newDetails[0]['classid']}&page={$i}">{$i}</a></li>
+    {/for}
+    <li>
+      <a href="/helper/compiler/list.php?cid={$newDetails[0]['classid']}&page={$next}" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+			<!-- 分页结束 -->
+	 	<!-- 右侧下部结束 -->
+	 <!-- 右侧结束 -->
+		</div>
+
+</div>
+
+</div>
+	<div class="clr"></div>
+
+		{P display('footer.html')}
+	</div>
+
+</body>
+</html>

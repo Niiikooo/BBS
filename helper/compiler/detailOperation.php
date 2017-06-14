@@ -12,6 +12,9 @@
 	}elseif(isset($_GET['istop'])){
 		// 置顶
 		update($link,'bbs_details','istop = 1',"where id = ".$_GET['istop']);
+	}elseif(isset($_GET['ishot'])){
+		update($link,'bbs_details','ishot= 1',"where id = ".$_GET['ishot']);
+
 	}elseif(isset($_GET['pay'])){
 		// 如果没登录跳转到登录界面
 
@@ -38,4 +41,6 @@
 		
 
 	}
+
+	// header("Location: ".$_SERVER['HTTP_REFERER']);
 	

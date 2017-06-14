@@ -2,7 +2,7 @@
 
 	include '../common.php';
 
-
+	header("Location: ".$_SERVER['HTTP_REFERER']);
 	$i = 0;
 // 更改板块信息
 	foreach ($_POST['order'] as $key => $value) {
@@ -37,4 +37,7 @@
 	}
 
 // 隐藏不想看的板块
-	update($link,'bbs_category','isdel = 1',"where cid in(".implode(',', $_POST['cid']).")");
+	if (isset($_POST['cid'])) {
+		update($link,'bbs_category','isdel = 1',"where cid in(".implode(',', $_POST['cid']).")");
+	}
+	

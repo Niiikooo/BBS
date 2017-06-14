@@ -38,8 +38,7 @@
 	 * 路径导航函数
 	 * @return array 路径导航的数组
 	 */
-	function breadcrumb(){
-		$link = connect('localhost','root','','utf8','bbs');
+	function breadcrumb($link){
 		if (!isset($_GET['cid']) && !isset($_GET['tid'])) {
 			return $cidData = [' '=>' '];
 		}elseif (isset($_GET['tid'])){
@@ -83,7 +82,7 @@
 		return $cidData;
 
 	}
-	$breadcrumb = breadcrumb();
+	$breadcrumb = breadcrumb($link);
 	// var_dump($breadcrumb);
 // 头部文件结束
 // 
@@ -102,7 +101,7 @@ $cidname = $nameArr[0]['classname'];
 		// 当前时间戳（日期ymd）
 		$time = strtotime("today");
 
-	$listToday = select($link,'count(*)','bbs_details',"where addtime > $time and first = 1");
+	$listToday = select($link,'count(*)','bbs_details',"where addtime > $time and first = 1 and classid = $cid and isdel = 0");
 $listToday = $listToday[0]['count(*)'];
 	// var_dump($listToday);
 	// 帖子总数，版主
@@ -123,7 +122,7 @@ $detailsNum = $detailsNum[0]['count(*)'];
 $tNum = select($link,'count(*)','bbs_details',"where classid=$cid");
 	$tNum = $tNum[0]['count(*)'];
 	// 最新帖的titile,time,authorid
-$new = select($link,'title,addtime,authorid','bbs_details',"where classid = $cid and first = 1",'','order by addtime','limit 0,1');
+$new = select($link,'title,addtime,authorid','bbs_details',"where classid = $cid and first = 1",'','order by addtime desc','limit 0,1');
 // var_dump($new,$cid);
 	if (!isset($new) || $new == false) {
 		$new=[0=>[

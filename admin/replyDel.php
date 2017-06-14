@@ -1,5 +1,6 @@
 <?php
 	include '../common.php';
+	header("Location:".$_SERVER['HTTP_REFERER']);
 	var_dump($_POST);
 	if (!isset($_POST['id'])) {
 		exit();

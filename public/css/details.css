@@ -15,7 +15,6 @@ css for details_main
 }
 .details{
 	text-align: center;
-	border : 1px solid #cdcdcd;
 }
 .details tr,th,td{
 	border : 1px solid #cdcdcd;
@@ -50,11 +49,12 @@ css for details_main
 	width: 80px;
 }
 .details_table{
-	/*text-align: center;*/
+	width: 959px;
 }
 .d_t_view{
 	padding:10px 10px;
 	border-bottom: none;
+	width:159px;
 }
 .bor_none{
 	border-top: none;
@@ -63,13 +63,14 @@ css for details_main
 }
 .elevator{
 	background: url(/public/img/fj_btn.png) no-repeat;
+	width: 11px;
 }
 .fl{
 	float:left;
 }
 .fr{
 	float:right;
-	width:159px;
+	width:225px;
 }
 .d_content{
 	text-align:left;
@@ -122,7 +123,7 @@ css for details_main
 
 }
 .fr input{
-	width: 34px;
+	width: 49px;
 	height: 20px;
 	display: inline-block;
 

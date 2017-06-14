@@ -13,7 +13,7 @@ css for admin
 
 .cidMan th{
 	width: 300px;
-	text-align: center;
+	text-align: left;
 }
 .cidMan input{
 	width: 159px;
@@ -52,4 +52,10 @@ css for admin
 .details_checkbox{
 	width: 15px;
 	height: 15px;
+}
+.cidMan td{
+	text-align : left;
+}
+.cm_t{
+	color: #337ab7;
 }

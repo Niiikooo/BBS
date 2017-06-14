@@ -30,7 +30,7 @@
 	// }
 	if (empty($_POST['password'])) {
 		$login = 'emptyPass.html';
-		display('login_verify.html',compact('login','refer','pid'));
+		display('login_verify.html',compact('login','refer','pid','breadcrumb'));
 		exit();
 
 	}
