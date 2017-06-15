@@ -42,7 +42,27 @@
 			<div class="bottom-left-text"><a href="/admin/replyRecycle.php">回帖回收站</a></div>
 		</div>
 	<div class="cidMan">
-	<div class="cm_t"><h2>帖子管理</h2></div>
+	<div class="cm_t">
+		<h2 style="float: left">帖子管理</h2>
+		<nav aria-label="Page navigation" id="page" style="float: right;margin-right:40px">
+  <ul class="pagination">
+    <li>
+      <a href="/admin/detailsManage.php?page={$prev}" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    {for $i=1;$i<$count+1;$i++}
+    <li><a href="/admin/detailsManage.php?page={$i}">{$i}</a></li>
+    {/for}
+    <li>
+      <a href="/admin/detailsManage.php?page={$next}" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+	</div>
 	<div>
 		<form action="/admin/detailsDel.php" method="post">
 		<table class="cidMan">
@@ -51,7 +71,7 @@
 		
 			<tr><th></th><th>标题</th><th>板块</th><th class="checkbox">作者</th><th>回复</th><th>浏览</th><th>最后发表</th></tr>
 			<!-- 大板块开始 -->
-			{foreach $details as $key => $value}
+			{foreach $newDetails as $key => $value}
 			<tr class="admin_sigline"></tr>
 			
 			<tr><td><input type="checkbox" class="form-control details_checkbox" value="{$value['id']}" name="id[]"></td>

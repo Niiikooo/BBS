@@ -1,6 +1,4 @@
 
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -86,7 +84,7 @@
 			<table class="table list_table">
 			<!-- 表头 -->
 
-				<tr><th class="l_t">筛选：全部<span class="pipe">|</span>精华</th><th class="l_t">作者</th><th class="l_t">回复/查看</th><th class="l_t">最后发表</th></tr>
+				<tr><th class="l_t">筛选：<a href="/helper/compiler/list.php?cid={$_GET['cid']}&select=0">全部</a><span class="pipe">|</span><a href="/helper/compiler/list.php?cid={$_GET['cid']}&select=1">精华</a></th><th class="l_t">作者</th><th class="l_t">回复/查看</th><th class="l_t">最新回复时间</th></tr>
 				<tr></tr>
 				<!-- 主体 -->
 				{if $newDetails == null}

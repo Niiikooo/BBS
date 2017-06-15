@@ -32,7 +32,7 @@
 	</div>
 	<div class="bottom">
 			<div class="bottom-left">
-				<div class="bottom-left-text"><a href="user.php">用户管理</a></div>
+				<div class="bottom-left-text"><a href="userManage.php">用户管理</a></div>
 				<div class="bottom-left-text"><a href="closeip.php">禁用IP</a></div>
 			</div>
 			<div class="bottom-right">
@@ -60,19 +60,17 @@
 						  </td>
 						  <td>{$value['username']}</td>	
 						  
-						  <td>{$value['sex']}</td>
-						  <td>{$value['group']}</td>	
+						  <td>{P echo $value['sex'] == 1 ? '男': '女'}</td>
+						  <td>{$value['groupName']}</td>	
 						  <td>{$value['rewardscore']}</td>
 						  <td>{$value['level']}</td>
-						<td>
 
-						</td>
 						  <td>
 						  
 						  	<a href="/admin/userDel.php?lock={$value['uid']}">锁定</a> 
 						  	<a href="/admin/userDel.php?unlock={$value['uid']}">解锁</a>
 
-							<a href="userDateli.php?id=$value['uid']">查看详情</a>		
+							<a href="/admin/member.php?uid={$value['uid']}">查看详情</a>		
 						  </td>		
 				      </tr>
 				      {/foreach}

@@ -3,11 +3,12 @@
 	
 
 	$details = select($link,'*','bbs_details','where first = 0 and isdel = 1');
-	var_dump($details);
+	// var_dump($details);
 
 
 	// 处理板块信息
-	foreach ($details as $key => $value) {
+	if ($details) {
+		foreach ($details as $key => $value) {
 		// 处理板块名
 		$classid = $value['classid'];
 		$classname = select($link,'classname','bbs_category',"where cid = $classid");
@@ -28,5 +29,7 @@
 
 		
 		}
+	}
+	
 	// 
 	display('replyRecycle.html',compact('pid','breadcrumb','details'));

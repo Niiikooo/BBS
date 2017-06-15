@@ -2,6 +2,7 @@
 	include '../common.php';
 	var_dump($_POST);
 	// id拼接为字符串
+	header("Location:".$_SERVER['HTTP_REFERER']);
 	$id = implode(',', $_POST['id']);
 	// 判断为恢复还是删除
 	if (isset($_POST['recover'])) {

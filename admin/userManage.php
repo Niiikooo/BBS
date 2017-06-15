@@ -18,7 +18,7 @@
 		}
 
 		// 处理等级
-		$level = floor(($value['rewardscore'])/10);
+		$level = floor(($value['rewardscore'])/20);
 		$name = select($link,'name','bbs_level',"where level = $level");
 		$userdata[$key]['level'] = $name[0]['name']; 
 	}

@@ -1,7 +1,8 @@
 <?php
 
 	include '../../common.php';
-	var_dump($_GET);
+	// var_dump($_GET);
+	header("Location: ".$_SERVER['HTTP_REFERER']);
 	// 判断闯过来的是什么值，进行置顶等动作
 	if (isset($_GET['del'])) {
 		// 删除主题
@@ -29,11 +30,11 @@
 			$money = select($link,'gold','bbs_userdata',"where uid = ".$_SESSION['uid']);
 			$money = $money[0]['gold'];
 			var_dump($money);
-			if ($money>$_GET['rate']) {
+			if ($money>=$_GET['rate']) {
 				// 酱购买插入order表
 				insert($link,'bbs_order'," set uid = ".$_SESSION['uid'].", tid = ".$_GET['pay'].", rate = ".$_GET['rate'].", addtime = ".time());
 				// 更新用户所剩的金币 
-				update($link,'bbs_userdata',"gold = gold - 10","where uid = ".$_SESSION['uid']);
+				update($link,'bbs_userdata',"gold = gold - ".$_GET['rate'],"where uid = ".$_SESSION['uid']);
 			}
 			
 			

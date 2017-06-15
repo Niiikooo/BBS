@@ -5,9 +5,8 @@
 	$details = select($link,'*','bbs_details','where first = 1 and isdel = 1');
 	// var_dump($details);
 
-
-	// 处理板块信息
-	foreach ($details as $key => $value) {
+	if ($details) {
+		foreach ($details as $key => $value) {
 		// 处理板块名
 		$classid = $value['classid'];
 		$classname = select($link,'classname','bbs_category',"where cid = $classid");
@@ -15,7 +14,7 @@
 		
 		$details[$key]['classname'] = $classname;
 // 处理作者名字
-		$author = uidToname($value['authorid']);
+		$author = uidToname($value['authorid'],$link);
 		list($a,$authorName) = each($author);
 		$details[$key]['authorName'] = $authorName;
 		
@@ -28,5 +27,8 @@
 
 		
 		}
+	}
+	// 处理板块信息
+
 	// 
 	display('detailsRecycle.html',compact('pid','breadcrumb','details'));

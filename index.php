@@ -3,6 +3,9 @@
 	
 	include 'common.php';
 	include finder('details_func.php');
+
+	
+	
 	// include finder('compiler.php');
 	// session_start();
 	// if(isset($_SESSION['username']) && $_SESSION['username']!=null){
@@ -52,9 +55,9 @@
 	// 	}
 	
 	// 站点信息
-	$site = ['siteName' => '论坛','webName' => '你的论坛','url' => 'www.rain.com','info' => '京ICP备 89273号'];
-	var_dump($site);
-	var_dump($_SESSION);
+	$site = ['siteName' => '酒吧','webName' => '我的论坛','url' => 'www.ok.com','info' => '京ICP备 89273号'];
+	// var_dump($site);
+	// var_dump($_SESSION);
 
 	// 编译输出文件
   	display('index.html',$data = compact('login','data','pid','breadcrumb','link','site'));

@@ -2,6 +2,7 @@
 // 头文件
 	include '../../common.php';
 	include  finder('details_func.php');
+	// var_dump($_SESSION);
 // 	include finder('compiler.php');
 // 	session_start();
 // // 这个是导航条的函数
@@ -27,7 +28,13 @@
 	$classid = $_GET['cid'];
 	// var_dump($classid);
 // 根据小版块编号查询帖子数据
-	$details = select($link,'*','bbs_details as a,bbs_userdata as b',"where a.classid=$classid and b.uid=a.authorid and first = 1 and isdel = 0",'','order by istop desc,addtime desc ');
+// 
+	if (!isset($_GET['select']) || (isset($_GET['select']) && $_GET['select'] == 0)) {
+		$details = select($link,'*','bbs_details as a,bbs_userdata as b',"where a.classid=$classid and b.uid=a.authorid and first = 1 and isdel = 0",'','order by istop desc,addtime desc ');
+	}else{
+		$details = select($link,'*','bbs_details as a,bbs_userdata as b',"where a.classid=$classid and b.uid=a.authorid and first = 1 and isdel = 0 and elite = 1",'','order by istop desc,addtime desc ');
+	}
+	
 	// var_dump($details);
 	// 处理最后发表回复时间
 	// 判断是否为空
@@ -42,7 +49,7 @@
 	// details帖子内容，对它处理分页
 	// 如果没有$_GET['page']
 	if (!isset($_GET['page'])) {
-		$page = 0;
+		$page = 1;
 	}else{
 		$page = $_GET['page'];
 	}

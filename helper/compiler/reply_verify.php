@@ -1,12 +1,12 @@
 <?php
 
 	include '../../common.php';
-	var_dump($_SESSION);
+	// var_dump($_SESSION);
 	if (!isset($_SESSION['username'])) {
 		display('notlogin.html',compact('pid','breadcrumb'));
 		exit();
 	}
-	var_dump($_POST);
+	// var_dump($_POST);
 	// 获得所有所需的帖子数据
 	$tid = $_POST['tid'];
 	if (!isset($_POST['content'])){

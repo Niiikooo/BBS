@@ -46,12 +46,10 @@
 				<div class="header_right_admin">
 				<a href="/helper/compiler/home.php"><img src="{$_SESSION['picture']}" style="float: right"></a>
 				<ul class="admin_l" style="float:right">
-					<li style="width: 200px;text-align:right">{$_SESSION['username']}<span class="pipe">|</span></li>
-					<li><button>签到</button><span class="pipe">|</span></li>
+					<li style="width: 200px;text-align:right;margin-left:145px">{$_SESSION['username']}<span class="pipe">|</span></li>
+					<li><a href="checkdaily.php?uid={$_SESSION['uid']}"><button>签到</button></a><span class="pipe">|</span></li>
 					<li><a href="/helper/compiler/home.php">我的</a><span class="pipe">|</span></li>
-					<li>设置<span class="pipe">|</span></li>
-					<li>消息<span class="pipe">|</span></li>
-					<li>提醒<span class="pipe">|</span></li>
+
 					<li><a href="/helper/compiler/logout.php">退出</a></li>
 
 					<div class="clr"></div>
@@ -59,7 +57,13 @@
 				{if $_SESSION['power'] == -1}
 					<li><a href="/admin/adminIndex.php">管理中心</a><span class="pipe">|</span></li>
 				{/if}
-					<li>积分：{$_SESSION['rewardscore']}<span class="pipe">|</span></li>
+					<li>积分：{$_SESSION['rewardscore']}&nbsp;距离下一等级还差：<?php $left = $_SESSION['rewardscore']%20;
+					if ($left == 0){
+						$left = 20;
+					}
+					echo $left;?>
+					<li>用户等级：{$_SESSION['level']}<span class="pipe">|</span></li>
+					<span class="pipe">|</span></li>
 					<li>用户组：{$_SESSION['group']}</li>
 					</ul>
 				</ul>

@@ -9,6 +9,6 @@
 	// echo '<style>.header_right_admin{
 	// 	display:none;
 	// }</style>';
-	var_dump($_SESSION);
+	// var_dump($_SESSION);
 
 	display('reg.html',compact('pid','breadcrumb'));

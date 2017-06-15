@@ -1,6 +1,6 @@
 <?php
 	// 数据库链接所需的参数
-	$bbs_user = ['host'=>'localhost' , 'user'=> 'root' , 'pwd' => '' , 'charset' => 'utf8' , 'dbName' => 'bbs' , 'prefix' => 'bbs_'];
+	$bbs_user = ['host' => 'localhost' , 'user' => 'root' , 'pwd' => '123456' , 'charset' => 'utf8' , 'dbName' => 'bbs' , 'prefix' => 'bbs_'];
 
 	// 网站所需常量
 	define('WEBNAME', $_SERVER['DOCUMENT_ROOT']);
@@ -14,7 +14,7 @@
 
 	
 
-
+	// $bbs_user = ['host'=>'localhost' , 'user'=> 'root' , 'pwd' => '123456' => 'utf8' , 'dbName' => 'bbs' , 'prefix' => 'bbs_'];
 
 
 

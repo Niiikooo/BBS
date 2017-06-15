@@ -3,7 +3,7 @@
 	//封装函数
 	
 	function connect($host,$user,$pwd,$charset,$dbName){
-		$link = mysqli_connect($host,$user,$pwd);
+		$link = mysqli_connect($host,$user,$pwd) or die('连接十年必');
 		if(!$link){
 			exit('服务器错误');
 		}
@@ -30,7 +30,7 @@
 			return false;
 		}
 		$row = mysqli_fetch_assoc($result);
-		$data = ['password' => $row['password'],'rewardscore' => $row['rewardscore'],'group' => $row['group'],'picture' => $row['picture'],'uid' => $row['uid'],'allowlogin' => $row['allowlogin'],'lasttime' => $row['lasttime'],'power' => $row['power']];
+		$data = ['password' => $row['password'],'rewardscore' => $row['rewardscore'],'group' => $row['groupName'],'picture' => $row['picture'],'uid' => $row['uid'],'allowlogin' => $row['allowlogin'],'lasttime' => $row['lasttime'],'power' => $row['power']];
 		return $data;
 	}
 
@@ -85,7 +85,7 @@
 		$values = parseStr($v);
 		$values = implode(',',$values);
 		$sql = "insert into ".$sheet.' ('.$fields.')'.' values('.$values.'); ';
-		echo $sql;
+		// echo $sql;
 		}else{
 			$sql = "insert into ".$sheet.$data;
 			echo $sql;
@@ -117,9 +117,9 @@
 	// 修改
 	function update($link,$sheet,$data,$where){
 		$sql = 'update '.$sheet.' set '.$data.' '.$where;
-		echo $sql;
+		// echo $sql;
 		$result = mysqli_query($link,$sql);
-		var_dump($result);
+		// var_dump($result);
 		if(!$result || !(mysqli_affected_rows($link))){
 			// echo ('修改失败 ！~');
 			// exit();
@@ -207,7 +207,7 @@
 		$where = "where cid = $cid";
 		}else{
 			$where = "where parentid = 0 $isdel";
-			var_dump($where);
+			// var_dump($where);
 		}
 		$bigid = select($link,'cid,classname','bbs_category',$where,'','order by orderby');
 		// 将板块的cid和classname拼接为一个一维数组

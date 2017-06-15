@@ -42,7 +42,7 @@
 			<div class="bottom-left-text"><a href="/admin/replyRecycle.php">回帖回收站</a></div>
 		</div>
 	<div class="cidMan">
-	<div class="cm_t"><h2>帖子管理</h2></div>
+	<div class="cm_t"><h2>帖子回收站</h2></div>
 	<div>
 		<form action="/admin/detailsRec_verify.php" method="post">
 		<table class="cidMan">
@@ -51,6 +51,7 @@
 		
 			<tr><th></th><th>标题</th><th>板块</th><th class="checkbox">作者</th><th>回复</th><th>浏览</th><th>最后发表</th></tr>
 			<!-- 大板块开始 -->
+			{if $details}
 			{foreach $details as $key => $value}
 			<tr class="admin_sigline"></tr>
 			
@@ -75,6 +76,7 @@
 			
 			<!-- 小板块结束 -->
 			{/foreach}
+			{/if}
 			<tr class="admin_sigline"></tr>
 			
 			

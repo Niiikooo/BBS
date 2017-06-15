@@ -4,14 +4,15 @@
 	if (!isset($_SESSION['username'])) {
 		
 	}
-	var_dump($_POST,$_SESSION);
+	// var_dump($_POST,$_SESSION);
 	// 传入变量
 	$tid = 0;
-	if (!isset($_POST['content']) || !isset($_POST['title'])) {
+	if (!isset($_POST['content']) || !isset($_POST['title']) ||$_POST['content'] == null || $_POST['title'] == null ) {
 		$publish_check = 'publish_error.html';
 	}else{
 		$content = $_POST['content'];
 	}
+	// var_dump($_POST);
 	
 	$first = 1;
 	$title = $_POST['title'];
@@ -30,10 +31,10 @@
 	}else{
 	// 插入数据库，返回是否插入值
 	$a = insert($link,'bbs_details',$data);
-	var_dump($a);
+	// var_dump($a);
 	if ($a) {
 		// 发帖积分增加
-		echo update($link,'bbs_userdata','rewardscore=rewardscore +20',"where uid = ".$authorid);
+		update($link,'bbs_userdata','rewardscore=rewardscore +10',"where uid = ".$authorid);
 		$publish_check = 'publish_success.html';
 	}else{
 		$publish_check = 'publish_error.html';
@@ -50,8 +51,8 @@
 	// 	$publish_verify = 'publish_success.html';
 	// }
 	
-	var_dump($breadcrumb);
-	var_dump($_SESSION);
+	// var_dump($breadcrumb);
+	// var_dump($_SESSION);
 	$tid = select($link,'id','bbs_details',"",'','order by addtime desc','limit 0,1');
 	$tid = $tid[0]['id'];
 

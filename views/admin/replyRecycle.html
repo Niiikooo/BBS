@@ -51,6 +51,7 @@
 		
 			<tr><th></th><th>标题</th><th>板块</th><th class="checkbox">作者</th><th>最后发表</th></tr>
 			<!-- 大板块开始 -->
+			{if $details}
 			{foreach $details as $key => $value}
 			<tr class="admin_sigline"></tr>
 			
@@ -74,6 +75,7 @@
 			
 			<!-- 小板块结束 -->
 			{/foreach}
+			{/if}
 			<tr class="admin_sigline"></tr>
 			
 			

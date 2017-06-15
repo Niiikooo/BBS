@@ -2,12 +2,13 @@
 
 	include '../../common.php';
 	// include finder('compiler.php');
-	setcookie(session_name(),session_id(),time()+3600,'/');
+	// setcookie(session_name(),session_id(),time()+3600,'/');
 	// 判断是否登陆
 	
 		// echo '<style>.header_right_admin{
 		// 	display:none;
 		// }</style>';
+	 
 		// 
 	// 跳转页面地址参数
 	if(!isset($_SERVER['HTTP_REFERER'])){
@@ -24,6 +25,17 @@
 	}
 	$username = $_POST['username'];
 
+	// closeip
+	$ip = $_SERVER['REMOTE_ADDR'];
+	$ip = ip2long($ip);
+	$IP = select($link,'ip','bbs_closeip',"where ip = $ip");
+	if ($IP) {
+		$login = 'closedip.html';
+		display('login_verify.html',compact('login','refer','pid','breadcrumb'));
+		exit();
+	}
+	//
+
 	// if($_POST['password']==NULL){
 	// 	exit('密码不能为空<a href="'.$_SERVER['HTTP_REFERER'].'" >返回</a>');
 		
@@ -39,9 +51,9 @@
 
 	// 提取数据,是一个包含用户信息的数组，包括积分用户组
 	$pwd_database = select_user($link,$username);
-	var_dump($pwd_database);
+	// var_dump($pwd_database);
 // 登录成功
-	if($pwd_database['password'] == $pwd){
+	if($pwd_database['password'] == md5($pwd)){
 		// 检测是否登陆失败5次被锁了ip
 		if ($pwd_database['allowlogin'] == 0) {
 			// 检验是否时间超出了锁定时间
@@ -69,6 +81,20 @@
 		$_SESSION['picture'] = $pwd_database['picture'];
 		$_SESSION['uid'] = $pwd_database['uid'];
 		$_SESSION['power'] = $pwd_database['power'];
+
+		// 等级
+		$level = ceil($pwd_database['rewardscore']/20);
+		// var_dump($level);
+		$lev = select($link,'name','bbs_level',"where level = $level");
+		$lev = $lev[0]['name'];
+		// echo $lev;
+		$_SESSION['level'] = $lev;
+		// var_dump($_SESSION);
+					
+		// 如果设置了自动登录
+		if (isset($_POST['auto'])) {
+			setcookie(session_name(),session_id(),time()+3600,'/');
+		}
 		update($link,'bbs_userdata',"logintimes = 0,lasttime = ".time(),"where username = '$username'");
 		}
 		}

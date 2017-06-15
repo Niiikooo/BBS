@@ -55,7 +55,7 @@
 			<tr><td><input type="text" class="form-control" value="{$V['orderby']}" name="order[{$V['cid']}]"></td>
 			<td><input type="text" class="form-control" value="{$V['classname']}" name="classname[]"></td>
 			<td><input type="text" class="form-control" value="{$V['description']}" name="desc[]"></td>
-			<td class="checkbox"><input type="checkbox" class="check" name="cid[]" value="{$V['cid']}"></td><td><input type="text" class="form-control" value="{P $uid = uidToname($V['compere']);
+			<td class="checkbox"><input type="checkbox" class="check" name="cid[]" value="{$V['cid']}"></td><td><input type="text" class="form-control" value="{P $uid = uidToname($V['compere'],$link);
 				echo implode(',',$uid)}" name="bm[]"></td></tr>
 				<tr class="admin_sigline"></tr>
 
@@ -68,7 +68,7 @@
 			<!-- 隔开空间用 -->
 			<tr class="admin_sigline"></tr>
 			<!-- 小板块开始 -->
-			<tr><td><input type="text" value="{$v['orderby']}" class="form-control" name="order[]"></td><td><span>|————</span><input type="text" value="{$v['classname']}" class="form-control classname" name="classname[]"></td><td><input type="textarea" class="form-control" value="{$v['description']}" name="desc[]"></td><td class="checkbox" style="width: 50px"><input type="checkbox" name="cid[]" value="{$v['cid']}" class="check"></td><td><input type="text" class="form-control" value="{P $uid = uidToname($v['compere']);echo implode(',',$uid)}" name="bm[]"></td></tr>
+			<tr><td><input type="text" value="{$v['orderby']}" class="form-control" name="order[]"></td><td><span>|————</span><input type="text" value="{$v['classname']}" class="form-control classname" name="classname[]"></td><td><input type="textarea" class="form-control" value="{$v['description']}" name="desc[]"></td><td class="checkbox" style="width: 50px"><input type="checkbox" name="cid[]" value="{$v['cid']}" class="check"></td><td><input type="text" class="form-control" value="{P $uid = uidToname($v['compere'],$link);echo implode(',',$uid)}" name="bm[]"></td></tr>
 			{/foreach}
 			{/if}
 			

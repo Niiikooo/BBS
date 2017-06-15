@@ -4,10 +4,19 @@
 	define('FINDER', rtrim(WEBNAME,'/').'/helper/compiler/finder.php');
 	// 酱底层函数递归寻找文件放入config文件中，从而无需多次调用
 	include FINDER;
+
+	// 判断是否安装过
+	// if (!file_exists('install.lock')) {
+	// 	header("Location:/install");
+	// }
+	
 	// echo WEBNAME;
 	// 连接数据库
 	include finder('func_mysql.php');
-	$link = connect($bbs_user['host'],$bbs_user['user'],$bbs_user['pwd'],$bbs_user['charset'],$bbs_user['dbName']);
+
+	$link = connect($bbs_user['host'], $bbs_user['user'], $bbs_user['pwd'], $bbs_user['charset'],$bbs_user['dbName']);
+
+
 	// insert($link,$a=['a' => 'b','c' => 'd']);
 	// 
 	// 
@@ -15,6 +24,7 @@
 	// 头部文件开始
 	// include '../../common.php';
 	include finder('compiler.php');
+
 
 
 	// 设置session名
@@ -134,7 +144,7 @@ $new = select($link,'title,addtime,authorid','bbs_details',"where classid = $cid
 	}
 		
 		$newTitle = $new[0];
-		$newTitle['authorid'] = uidToname($newTitle['authorid']);
+		$newTitle['authorid'] = uidToname($newTitle['authorid'],$link);
 	
 	
 	// var_dump($newData);
@@ -148,14 +158,14 @@ $new = select($link,'title,addtime,authorid','bbs_details',"where classid = $cid
 	 * @param  str $uid 用户id数字字符串
 	 * @return array       一个包含uid=》用户名的数组
 	 */
-	function uidToname($uid){
+	function uidToname($uid,$link){
 		if (is_array($uid)) {
 			$nameArr = explode(',', $uid);
 		}else{
 			$nameArr = [$uid]; 
 		}
 		
-		$link = connect('localhost','root','','utf8','bbs');
+	
 		foreach ($nameArr as $key => $value) {
 			$temp = select($link,'username','bbs_userdata',"where uid = $value");
 			$newName[$value] = $temp[0]['username'];

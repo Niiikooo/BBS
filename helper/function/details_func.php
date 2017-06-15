@@ -12,12 +12,14 @@
 		$tcount = select($link,'count(*) as count','bbs_userdata as a,bbs_details as b',"where a.uid = $aid and b.authorid=$aid and first = $first");
 		$tcount = $tcount[0]['count'];
 		// var_dump($tcount);
-		$user = select($link,'gold,exp,picture','bbs_userdata as a,bbs_details as b',"where a.uid = $aid and b.authorid=$aid and first = $first");
+		$user = select($link,'gold,exp,picture,rewardscore','bbs_userdata as a,bbs_details as b',"where a.uid = $aid and b.authorid=$aid and first = $first");
 		// var_dump($user);
 		$gold = $user[0]['gold'];
 		$exp = $user[0]['exp'];
 		$picture = $user[0]['picture'];
-		$userdata = compact('tcount','gold','exp','picture');
+		$rewardscore = $user[0]['rewardscore'];
+		$userdata = compact('tcount','gold','exp','picture','rewardscore');
+
 		// var_dump($userdata);
 		return $userdata;
 	}

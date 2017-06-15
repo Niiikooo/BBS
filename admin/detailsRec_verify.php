@@ -1,6 +1,7 @@
 <?php
 	include '../common.php';
-	var_dump($_POST);
+	// var_dump($_POST);
+	header("Location:".$_SERVER['HTTP_REFERER']);
 	// id拼接为字符串
 	$id = implode(',', $_POST['id']);
 	var_dump($id);

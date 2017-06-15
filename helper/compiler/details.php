@@ -2,6 +2,8 @@
 
 	include $_SERVER['DOCUMENT_ROOT'].'/common.php';
 	include finder('details_func.php');
+	// var_dump($_SESSION);
+
 // 将帖子数据取出来
 	$tid = $_GET['tid'];
 	// update($link,'bbs_userdata',"username = 'ff'",)
@@ -103,16 +105,16 @@
 	}
 
 	// 管理员操作按钮
-	if (isset($_SESSION['power']) && $_SESSION['power'] != 0) {
-		$power = 1;
-	}else{
-		$power = 0;
-	}
-	// 
+	// if (isset($_SESSION['power']) && $_SESSION['power'] != 0) {
+	// 	$power = 1;
+	// }else{
+	// 	$power = 0;
+	// }
+	$power = $_SESSION['power'];
 	// 
 	// 分页处理
 	if (!isset($_GET['page'])) {
-		$page = 0;
+		$page = 1;
 	}else{
 		$page = $_GET['page'];
 	}
@@ -126,7 +128,7 @@
 	// 酱所有的数据从数组中分zu
 	// if ($) {
 		// 第一页单独处理
-		var_dump($table);
+		// var_dump($table);
 		if ($page == 1 || $page == 0) {
 			if ($table['reply']) {
 				$table['reply'] = array_slice($table['reply'], 0,9,true);
